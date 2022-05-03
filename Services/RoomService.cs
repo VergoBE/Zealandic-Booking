@@ -28,26 +28,27 @@ namespace Zealandic_Booking.Services
 
         public Room GetRoom(int id)
         {
-            foreach (Room room in rooms)
-            {
-                if (room.RoomID == id)
-                    return room;
-            }
-
-            return null;
+            //foreach (Room room in rooms)
+            //{
+            //    if (room.RoomID == id)
+            //        return room;
+            //}
+            return (from room in rooms where room.RoomID == id select room).FirstOrDefault();
+            //return null;
         }
 
         public Room DeleteRoom(int roomId)
         {
-            Room roomToBeDeleted = null;
-            foreach (Room i in rooms)
-            {
-                if (i.RoomID == roomId)
-                {
-                    roomToBeDeleted = i;
-                    break;
-                }
-            }
+            //Room roomToBeDeleted = null;
+            //foreach (Room i in rooms)
+            //{
+            //    if (i.RoomID == roomId)
+            //    {
+            //        roomToBeDeleted = i;
+            //        break;
+            //    }
+            //}
+            Room roomToBeDeleted = GetRoom(roomId);
             if (roomToBeDeleted != null)
             {
                 rooms.Remove(roomToBeDeleted);

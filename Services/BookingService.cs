@@ -29,30 +29,33 @@ namespace Zealandic_Booking.Services
 
         public Booking GetBooking(int id)
         {
-            foreach (Booking booking in bookings)
-            {
-                if (booking.BookingID == id) 
-                    return booking;
-            }
 
-            return null;
+            //foreach (Booking booking in bookings)
+            //{
+            //    if (booking.BookingID == id) 
+            //        return booking;
+            //}
+            return (from booking in bookings where booking.BookingID == id select booking).FirstOrDefault();
+            //return null;
         }
 
         public Booking DeleteBooking(int bookingId)
         {
-            Booking bookingToBeDeleted = null;
-            foreach (Booking i in bookings)
-            {
-                if (i.BookingID == bookingId)
-                {
-                    bookingToBeDeleted = i;
-                    break;
-                }
-            }
+            //Booking bookingToBeDeleted = null;
+            Booking bookingToBeDeleted = GetBooking(bookingId);
+            //foreach (Booking i in bookings)
+            //{
+            //    if (i.BookingID == bookingId)
+            //    {
+            //        bookingToBeDeleted = i;
+            //        break;
+            //    }
+            //}
+            
             if (bookingToBeDeleted != null)
             {
-                bookings.Remove(bookingToBeDeleted);
-                _DeleteBooking(bookingToBeDeleted);
+              bookings.Remove(bookingToBeDeleted);
+              _DeleteBooking(bookingToBeDeleted);
             }
             return bookingToBeDeleted;
         }

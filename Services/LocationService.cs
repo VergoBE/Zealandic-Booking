@@ -28,26 +28,27 @@ namespace Zealandic_Booking.Services
 
         public Location GetLocation(int id)
         {
-            foreach (Location location in locations)
-            {
-                if (location.LocationID == id)
-                    return location;
-            }
-
-            return null;
+            //foreach (Location location in locations)
+            //{
+            //    if (location.LocationID == id)
+            //        return location;
+            //}
+            return (from location in locations where location.LocationID == id select location).FirstOrDefault();
+            //return null;
         }
 
         public Location DeleteLocation(int locationId)
         {
-            Location locationToBeDeleted = null;
-            foreach (Location i in locations)
-            {
-                if (i.LocationID == locationId)
-                {
-                    locationToBeDeleted = i;
-                    break;
-                }
-            }
+            //Location locationToBeDeleted = null;
+            //foreach (Location i in locations)
+            //{
+            //    if (i.LocationID == locationId)
+            //    {
+            //        locationToBeDeleted = i;
+            //        break;
+            //    }
+            //}
+            Location locationToBeDeleted = GetLocation(locationId);
             if (locationToBeDeleted != null)
             {
                 locations.Remove(locationToBeDeleted);

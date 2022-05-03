@@ -28,26 +28,27 @@ namespace Zealandic_Booking.Services
 
         public Building GetBuilding(int id)
         {
-            foreach (Building building in buildings)
-            {
-                if (building.BuildingID == id)
-                    return building;
-            }
-
-            return null;
+            //foreach (Building building in buildings)
+            //{
+            //    if (building.BuildingID == id)
+            //        return building;
+            //}
+            return (from building in buildings where building.BuildingID == id select building).FirstOrDefault();
+            //return null;
         }
 
         public Building DeleteBuilding(int buildingId)
         {
-            Building buildingToBeDeleted = null;
-            foreach (Building i in buildings)
-            {
-                if (i.BuildingID == buildingId)
-                {
-                    buildingToBeDeleted = i;
-                    break;
-                }
-            }
+            //Building buildingToBeDeleted = null;
+            //foreach (Building i in buildings)
+            //{
+            //    if (i.BuildingID == buildingId)
+            //    {
+            //        buildingToBeDeleted = i;
+            //        break;
+            //    }
+            //}
+            Building buildingToBeDeleted = GetBuilding(buildingId);
             if (buildingToBeDeleted != null)
             {
                 buildings.Remove(buildingToBeDeleted);
