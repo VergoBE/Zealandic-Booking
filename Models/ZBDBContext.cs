@@ -29,7 +29,7 @@ namespace Zealandic_Booking.Models
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ZBDB; Integrated Security=True; Connect Timeout=10; Encrypt=False");
+            options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ZealandBookingDB; Integrated Security=True; Connect Timeout=10; Encrypt=False");
         }
 
         protected override void OnModelCreating(ModelBuilder DatabaseBuilder)
