@@ -42,7 +42,7 @@ namespace Zealandic_Booking.Pages.LogIn
 
         public async Task<IActionResult> OnPostAsync()
         {
-            List<User> users = _userService.Users;
+            IEnumerable<User> users = _userService.GetUsers();
             foreach (User user in users)
             {
                 if (UserName == user.Username)
