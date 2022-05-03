@@ -57,9 +57,9 @@ namespace Zealandic_Booking.Pages.LogIn
                             new Claim(ClaimTypes.Role, Role)
                         };
 
-                        if(Role == "Teacher") claims.Add(new Claim(ClaimTypes.Role, "Teacher"));
+                        if (Role == "Teacher") claims.Add(new Claim(ClaimTypes.Role, "Teacher"));
                         if (UserName == "admin") claims.Add(new Claim(ClaimTypes.Role, "admin"));
-                        
+                        if (Role == "Student")claims.Add( new Claim(ClaimTypes.Role, "Student"));
 
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
