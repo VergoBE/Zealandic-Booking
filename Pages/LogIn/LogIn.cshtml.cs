@@ -26,10 +26,14 @@ namespace Zealandic_Booking.Pages.LogIn
         [BindProperty]
         public string UserName { get; set; }
 
+        public string Role { get; set; }
+
         [BindProperty, DataType(DataType.Password)]
         public string Password { get; set; }
 
         public string Message { get; set; }
+
+        
 
 
         public void OnGet()
@@ -49,10 +53,13 @@ namespace Zealandic_Booking.Pages.LogIn
                         //LoggedInUser = user;
                         var claims = new List<Claim>
                         {
-                            new Claim(ClaimTypes.Name, UserName)
+                            new Claim(ClaimTypes.Name, UserName),
+                            new Claim(ClaimTypes.Role, Role)
                         };
 
+                        if(Role == "Teacher") claims.Add(new Claim(ClaimTypes.Role, "Teacher"));
                         if (UserName == "admin") claims.Add(new Claim(ClaimTypes.Role, "admin"));
+                        
 
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
