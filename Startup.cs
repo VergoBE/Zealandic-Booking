@@ -30,7 +30,16 @@ namespace Zealandic_Booking
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddSingleton<UserService, UserService>();
+            services.AddTransient<UserService, UserService>();
+            services.AddTransient<BookingService, BookingService>();
+            services.AddTransient<BuildingService, BuildingService>();
+            services.AddTransient<LocationService, LocationService>();
+            services.AddTransient<RoomService, RoomService>();
+            services.AddTransient<DBService<User>>();
+            services.AddTransient<DBService<Booking>>();
+            services.AddTransient<DBService<Building>>();
+            services.AddTransient<DBService<Location>>();
+            services.AddTransient<DBService<Room>>();
 
 
 
