@@ -13,8 +13,10 @@ namespace Zealandic_Booking.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int LocationID { get; set; }
         [Required]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Location name cannot be longer than 50 characters.")]
         public string Name { get; set; }
         [Required]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Address cannot be longer than 50 characters.")]
         public string Address { get; set; }
 
         public Location(int locationId, string name, string address)

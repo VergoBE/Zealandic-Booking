@@ -31,5 +31,19 @@ namespace Zealandic_Booking.Models
         {
             options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ZBDB; Integrated Security=True; Connect Timeout=10; Encrypt=False");
         }
+
+        protected override void OnModelCreating(ModelBuilder DatabaseBuilder)
+        {
+            DatabaseBuilder.Entity<Booking>().ToTable(nameof(Bookings))
+                .HasOne(r => r.Room);
+            DatabaseBuilder.Entity<Booking>().ToTable(nameof(Bookings))
+                .HasOne(u => u.User);
+            DatabaseBuilder.Entity<Room>().ToTable(nameof(Rooms))
+                .HasOne(b => b.Building);
+            DatabaseBuilder.Entity<Room>().ToTable(nameof(Rooms))
+                .HasOne(l => l.Location);
+            DatabaseBuilder.Entity<Building>().ToTable(nameof(Buildings))
+                .HasOne(l => l.Location);
+        }
     }
 }

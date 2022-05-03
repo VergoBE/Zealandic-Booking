@@ -15,13 +15,16 @@ namespace Zealandic_Booking.Models
         [Required]
         public string Name { get; set; }
         [Required]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Room title cannot be longer than 50 characters.")]
         public string Title { get; set; }
         [Required]
         public bool IT_Tools { get; set; }
         [ForeignKey("Building")]
-        public int BuildingID { get; set; }
+        public int? BuildingID { get; set; }
         [ForeignKey("Location")]
-        public int LocationID { get; set; }
+        public int? LocationID { get; set; }
+        public Building Building { get; set; }
+        public Location Location { get; set; }
 
         public Room(int roomId, string roomName, string roomTitle, bool iTTools, int buildingId, int locationId)
         {

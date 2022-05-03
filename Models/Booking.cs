@@ -13,11 +13,15 @@ namespace Zealandic_Booking.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BookingID { get; set; }
         [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Time { get; set; }
         [ForeignKey("Room")] 
-        public int RoomID { get; set; }
+        public int? RoomID { get; set; }
         [ForeignKey("User")] 
-        public int UserID { get; set; }
+        public int? UserID { get; set; }
+        public Room Room { get; set; }
+        public User User { get; set; }
 
         public Booking(int bookingId, DateTime bookingTime, int roomId, int userId)
         {

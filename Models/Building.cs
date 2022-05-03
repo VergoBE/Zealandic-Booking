@@ -13,9 +13,11 @@ namespace Zealandic_Booking.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BuildingID { get; set; }
         [Required]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Building name cannot be longer than 50 characters.")]
         public string Name { get; set; }
         [ForeignKey("Location")]
-        public int LocationID { get; set; }
+        public int? LocationID { get; set; }
+        public Location Location { get; set; }
 
         public Building(int buildingId, string buildingName, int locationId)
         {
