@@ -28,26 +28,26 @@ namespace Zealandic_Booking.Services
 
         public User GetUser(int id)
         {
-            foreach (User user in users)
-            {
-                if (user.UserID == id)
-                    return user;
-            }
-
-            return null;
+            //foreach (User user in users)
+            //{
+            //    if (user.UserID == id)
+            //        return user;
+            //}
+            return (from user in users where user.UserID == id select user).FirstOrDefault();
         }
 
         public User DeleteUser(int userId)
         {
-            User userToBeDeleted = null;
-            foreach (User i in users)
-            {
-                if (i.UserID == userId)
-                {
-                    userToBeDeleted = i;
-                    break;
-                }
-            }
+            //User userToBeDeleted = null;
+            User userToBeDeleted = GetUser(userId); 
+            //foreach (User i in users)
+            //{
+            //    if (i.UserID == userId)
+            //    {
+            //        userToBeDeleted = i;
+            //        break;
+            //    }
+            //}
             if (userToBeDeleted != null)
             {
                 users.Remove(userToBeDeleted);
