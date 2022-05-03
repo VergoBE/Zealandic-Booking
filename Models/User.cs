@@ -21,6 +21,9 @@ namespace Zealandic_Booking.Models
         [Required]
         public string Password { get; set; }
 
+        public virtual ICollection<Booking> Bookings { get; set; }
+
+
         public User(int userId, string name, string role, string username, string password)
         {
             UserID = userId;
