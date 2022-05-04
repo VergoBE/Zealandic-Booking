@@ -1,4 +1,11 @@
-﻿@page
+﻿@page       "{id:int}"
 @model Zealandic_Booking.Pages.Booking.DeleteBookingModel
 @{
 }
+<h1>Confirm you want to delete the booking</h1>
+<div class="alert alert-danger">
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Yes, Delete Booking</button>
+        <a class="btn btn-primary" asp-page="/Booking/GetBookings">No, Do not delete</a>
+    </form>
+</div>

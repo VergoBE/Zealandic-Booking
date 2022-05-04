@@ -20,18 +20,18 @@ namespace Zealandic_Booking.Pages.Booking
             this._bookingService = bookingService;
             bookings = bookingService.GetBookings().ToList();
         }
-        [BindProperty] public int BookingID { get; set; }
+        [BindProperty] public Models.Booking Booking { get; set; }
         public IActionResult OnGet()
         {
             return Page();
         }
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPost(int id)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            _bookingService.DeleteBooking(BookingID);
+            _bookingService.DeleteBooking(id);
             return RedirectToPage("GetBookings");
         }
     }
