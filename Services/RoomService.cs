@@ -26,35 +26,39 @@ namespace Zealandic_Booking.Services
             return rooms;
         }
 
-        public Room GetRoom(int id)
+        public IEnumerable<Room> GetRoom(int id)
         {
-            //foreach (Room room in rooms)
-            //{
-            //    if (room.RoomID == id)
-            //        return room;
-            //}
-            return (from room in rooms where room.RoomID == id select room).FirstOrDefault();
-            //return null;
+            List<Room> roomSearch = new List<Room>();
+            foreach (Room room in rooms)
+            {
+                if (room.RoomID == id)
+                {
+                    roomSearch.Add(room);
+                }
+                    
+            }
+            //return (from room in rooms where room.RoomID == id select room).FirstOrDefault();
+            return roomSearch;
         }
 
-        public Room DeleteRoom(int roomId)
+        public async Task DeleteRoom(int roomId)
         {
-            //Room roomToBeDeleted = null;
-            //foreach (Room i in rooms)
-            //{
-            //    if (i.RoomID == roomId)
-            //    {
-            //        roomToBeDeleted = i;
-            //        break;
-            //    }
-            //}
-            Room roomToBeDeleted = GetRoom(roomId);
+            Room roomToBeDeleted = null;
+            foreach (Room i in rooms)
+            {
+                if (i.RoomID == roomId)
+                {
+                    roomToBeDeleted = i;
+                    break;
+                }
+            }
+            //Room roomToBeDeleted = GetRoom(roomId);
             if (roomToBeDeleted != null)
             {
                 rooms.Remove(roomToBeDeleted);
                 _DeleteRoom(roomToBeDeleted);
             }
-            return roomToBeDeleted;
+            
         }
 
         private async void _DeleteRoom(Room roomToBeDeleted)
