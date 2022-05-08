@@ -3,15 +3,129 @@
 @model Zealandic_Booking.Pages.WorkInProgress.SimpleBookingModel
 @{
 }
-<select class="form-select" aria-label="Default select example">
-    <option selected>Rooms</option>
-    @foreach (var room in Model.Rooms)
-    {
-        <option value="@room.RoomID">Name: @room.Name | Title: @room.Title | IT: @room.IT_Tools</option>
-    }
-    <option selected>Users</option>
-    @foreach (var user in Model.Users)
-    {
-        <option value="@user.UserID">Name: @user.Name</option>
-    }
-</select>
+<script>
+    $( document ).ready(function() {
+        $('.carousel').carousel('pause');
+    });
+</script>
+<div style="width: 440px">
+    <div class="">
+        <select class="form-control btn-dark" aria-label="Room Select Form" style="width: 440px">
+            <option selected>Room selection required</option>
+            @foreach (var room in Model.Rooms)
+            {
+                <option value="@room.RoomID">Name: @room.Name | Title: @room.Title | IT: @room.IT_Tools</option>
+            }
+        </select>
+    </div>
+    
+    <div class="mt-2">
+        <select class="form-control btn-dark" aria-label="User Select Form" style="width: 440px">
+            <option selected>User required</option>
+            @foreach (var user in Model.Users)
+            {
+                <option value="@user.UserID">Name: @user.Name</option>
+            }
+        </select>
+    </div>
+    
+    <div class="input-group mt-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text text-dark" id="basic-addon1">Year</span>
+        </div>
+        <input type="text" class="form-control btn-dark" value="@Model.currentYear" aria-label="Year" aria-describedby="basic-addon1">
+        <div class="input-group-prepend ml-2">
+            <span class="input-group-text text-dark" id="basic-addon2">Month</span>
+        </div>
+        <input type="text" class="form-control btn-dark" value="@Model.currentMonth" aria-label="Month" aria-describedby="basic-addon2">
+        <div class="input-group-prepend ml-2">
+            <span class="input-group-text text-dark" id="basic-addon3">Day</span>
+        </div>
+        <input type="text" class="form-control btn-dark" value="@Model.currentDay" aria-label="Day" aria-describedby="basic-addon3">
+    </div>
+    
+    <div class="btn-group mt-2 ml-3" data-toggle="buttons">
+        <fieldset>
+            <div>
+                <label class="btn btn-dark active" style="font-size: 10px" for="inlineRadio1">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" checked> 00:00 - 02:00
+                </label>
+
+                <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio2">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2"> 02:00 - 04:00
+                </label>
+
+                <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio3">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3"> 04:00 - 06:00
+                </label>
+
+                <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio4">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="4"> 06:00 - 08:00
+                </label>
+            </div>
+
+            <div class="">
+                <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio5">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio5" value="5"> 08:00 - 10:00
+                </label>
+
+                <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio6">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio6" value="6"> 10:00 - 12:00
+                </label>
+
+                <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio7">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio7" value="7"> 12:00 - 14:00
+                </label>
+
+                <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio8">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio8" value="8"> 14:00 - 16:00
+                </label>
+            </div>
+
+            <div>
+                <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio9">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio9" value="9"> 16:00 - 18:00
+                </label>
+
+
+                <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio10">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio10" value="10"> 18:00 - 20:00
+                </label>
+
+                <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio11">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio11" value="11"> 20:00 - 22:00
+                </label>
+
+
+                <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio12">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio12" value="12"> 22:00 - 00:00
+                </label>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+@*<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="ml-4">
+                <h1>1</h1>
+                <button class="btn-dark"></button>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="ml-4">
+                <h1>2</h1>
+                <button class="btn-dark"></button>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>*@

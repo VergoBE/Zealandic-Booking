@@ -13,6 +13,9 @@ namespace Zealandic_Booking.Pages.WorkInProgress
         private BookingService bookingService;
         private RoomService roomService;
         private UserService userService;
+        public int currentYear { get; set; }
+        public int currentMonth { get; set; }
+        public int currentDay { get; set; }
         public List<Models.Booking> Bookings { get; private set; }
         public List<Models.User> Users { get; private set; }
         public List<Models.Room> Rooms { get; private set; }
@@ -21,10 +24,18 @@ namespace Zealandic_Booking.Pages.WorkInProgress
             this.bookingService = bookingService;
             this.roomService = roomService;
             this.userService = userService;
+            DateTime currentDT = DateTime.Now;
+            currentYear = currentDT.Year;
+            currentMonth = currentDT.Month;
+            currentDay = currentDT.Day;
         }
 
         public IActionResult OnGet()
         {
+            DateTime currentDT = DateTime.Now;
+            currentYear = currentDT.Year;
+            currentMonth = currentDT.Month;
+            currentDay = currentDT.Day;
             Bookings = bookingService.GetBookings().ToList();
             Users = userService.GetUsers().ToList();
             Rooms = roomService.GetRooms().ToList();
