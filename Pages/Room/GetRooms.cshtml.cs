@@ -18,7 +18,7 @@ namespace Zealandic_Booking.Pages.Room
         }
 
         public List<Models.Room> Rooms { get;  private set; }
-        [BindProperty] public int ID { get; private set; }
+        [BindProperty] public string ID { get; set; }
         
         public IActionResult OnGet()
         {
