@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Zealandic_Booking.Pages.LogIn
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -31,10 +32,43 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/WorkInProgress/SimpleBooking">Test: SimpleBooking</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/LogIn">Login</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Room/GetRooms">All Rooms</a>
+                        </li>
+                        @{
+                            if (Context.User.Identity.Name == "admin")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-page="/Admin/CreateUser">Create User</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <ul class="navbar-nav">
+                        @{
+                            if (Context.User.Identity.Name==null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-page="/LogIn/LogIn">Login</a>
+                                </li>
+                            }
+                            else
+                            {
+                                if (Context.User.Identity.Name != null)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="" asp-page="">Book Lokale</a>
+                                    </li>
+                                    <li class="nav-item nav-link mr-3">
+                                        User:  @Context.User.Identity.Name
+                                    </li>
+                                }
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-page="/LogIn/LogoutPage">Logout</a>
+                                </li>
+                            } 
+                        }
                     </ul>
                 </div>
             </div>

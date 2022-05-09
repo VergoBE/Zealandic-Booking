@@ -33,13 +33,6 @@ namespace Zealandic_Booking.Pages.LogIn
 
         public string Message { get; set; }
 
-        
-
-
-        public void OnGet()
-        {
-        }
-
         public async Task<IActionResult> OnPostAsync()
         {
             IEnumerable<User> users = _userService.GetUsers();
@@ -54,7 +47,7 @@ namespace Zealandic_Booking.Pages.LogIn
                         var claims = new List<Claim>
                         {
                             new Claim(ClaimTypes.Name, UserName),
-                            new Claim(ClaimTypes.Role, Role)
+                            new Claim(ClaimTypes.Role, user.Role)
                         };
 
                         if (Role == "Teacher") claims.Add(new Claim(ClaimTypes.Role, "Teacher"));

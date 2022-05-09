@@ -26,12 +26,12 @@ namespace Zealandic_Booking.Services
             return rooms;
         }
 
-        public IEnumerable<Room> GetRoomList(int id)
+        public IEnumerable<Room> GetRoomList(string id)
         {
             List<Room> roomSearch = new List<Room>();
             foreach (Room room in rooms)
             {
-                if (room.RoomID == id)
+                if (room.RoomID.ToString() == id)
                 {
                     roomSearch.Add(room);
                 }
