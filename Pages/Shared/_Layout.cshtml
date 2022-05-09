@@ -33,11 +33,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/WorkInProgress/SimpleBooking">Test: SimpleBooking</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/LogIn">Login</a>
                         </li>
-                        <li>
                         @{
                             if (Context.User.Identity.Name == "admin")
                             {
@@ -52,7 +48,7 @@
                             if (Context.User.Identity.Name==null)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-page="/LogIn/LoginPage">Login</a>
+                                    <a class="nav-link" asp-area="" asp-page="/LogIn/LogIn">Login</a>
                                 </li>
                             }
                             else

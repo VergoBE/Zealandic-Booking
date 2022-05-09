@@ -33,13 +33,6 @@ namespace Zealandic_Booking.Pages.LogIn
 
         public string Message { get; set; }
 
-        
-
-
-        public void OnGet()
-        {
-        }
-
         public async Task<IActionResult> OnPostAsync()
         {
             IEnumerable<User> users = _userService.GetUsers();
