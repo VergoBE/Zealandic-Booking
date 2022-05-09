@@ -55,17 +55,23 @@ namespace Zealandic_Booking.Pages.WorkInProgress
         private DateTime datetime;
         private string buffer;
 
-        public void OnPost(int year, int month, int day, int postRoomID, int postUserID, string time)
+        public async Task<IActionResult> OnPost()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
             Bookings = bookingService.GetBookings().ToList();
             Users = userService.GetUsers().ToList();
             Rooms = roomService.GetRooms().ToList();
             room = roomService.GetRoom(postRoomID);
             user = userService.GetUser(postUserID);
+            
             buffer = year.ToString() + "/" + month.ToString() + "/" + day.ToString() + " " + time;
             datetime = DateTime.Parse(buffer);
             booking = new Models.Booking(null, datetime, postRoomID, postUserID);
-            bookingService.AddBooking(booking);
+            await bookingService.AddBooking(booking);
+            return RedirectToPage("/Index");
         }
     }
 }

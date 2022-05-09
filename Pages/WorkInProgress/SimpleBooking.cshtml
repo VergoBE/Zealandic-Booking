@@ -6,13 +6,41 @@
 <script>
     $( document ).ready(function() {
         $('.carousel').carousel('pause');
+        $("#DT_Year").keyup(function() {
+            DT_Function();
+        });
+        $("#DT_Month").keyup(function() {
+            DT_Function();
+        });
+        $("#DT_Day").keyup(function() {
+            DT_Function();
+        });
     });
+
+    
+
+    function DT_Function() {
+        var Year = $("#DT_Year").val();
+        var Month = $("#DT_Month").val();
+        var Day = $("#DT_Day").val();
+        if (Month > 12) {
+            $("#DT_Month").val(12);
+        }
+        else if (Year < 1000) {
+            $("#DT_Year").val(2000);
+        }
+        else if (Day > 31) {
+            $("#DT_Day").val(31);
+        }
+        console.log(Year);
+        console.log(Month);
+        console.log(Day);
+    }
 </script>
 <form method="post">
     <div style="width: 440px" class="col-md-12">
         <div class="">
             <select class="form-control btn-dark" asp-for="postRoomID" aria-label="Room Select Form">
-                <option selected>Room selection required</option>
                 @foreach (var room in Model.Rooms)
                 {
                     <option value="@room.RoomID">Name: @room.Name | Title: @room.Title | IT: @room.IT_Tools</option>
@@ -22,7 +50,6 @@
         
         <div class="mt-2">
             <select class="form-control btn-dark" asp-for="postUserID" aria-label="User Select Form">
-                <option selected>User required</option>
                 @foreach (var user in Model.Users)
                 {
                     <option value="@user.UserID">Name: @user.Name</option>
@@ -34,15 +61,15 @@
             <div class="input-group-prepend">
                 <span class="input-group-text text-dark" id="basic-addon1">Year</span>
             </div>
-            <input type="text" class="form-control btn-dark" asp-for="year" value="@Model.currentYear" aria-label="Year" aria-describedby="basic-addon1">
+            <input maxlength="4" type="text" id="DT_Year" class="form-control btn-dark DT_Year" asp-for="year" value="@Model.currentYear" aria-label="Year" aria-describedby="basic-addon1">
             <div class="input-group-prepend ml-2">
                 <span class="input-group-text text-dark" id="basic-addon2">Month</span>
             </div>
-            <input type="text" class="form-control btn-dark" asp-for="month" value="@Model.currentMonth" aria-label="Month" aria-describedby="basic-addon2">
+            <input maxlength="2" type="text" id="DT_Month" class="form-control btn-dark" asp-for="month" value="@Model.currentMonth" aria-label="Month" aria-describedby="basic-addon2">
             <div class="input-group-prepend ml-2">
                 <span class="input-group-text text-dark" id="basic-addon3">Day</span>
             </div>
-            <input type="text" class="form-control btn-dark" asp-for="day" value="@Model.currentDay" aria-label="Day" aria-describedby="basic-addon3">
+            <input maxlength="2" type="text" id="DT_Day" class="form-control btn-dark" asp-for="day" value="@Model.currentDay" aria-label="Day" aria-describedby="basic-addon3">
         </div>
         
         <div class="btn-group mt-2 text-center" data-toggle="buttons">
