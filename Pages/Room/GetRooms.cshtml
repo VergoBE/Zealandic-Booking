@@ -2,3 +2,59 @@
 @model Zealandic_Booking.Pages.Room.GetRoomsModel
 @{
 }
+<h1>Here is all the Rooms</h1>
+<br />
+<div class="row">
+    <div class="col-4"><h5>Search For Room By Id</h5></div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <form method="post"class="form-inline">
+            <input asp-for="@Model.ID" class="form.control mr-1" placeholder="Enter Room ID Here!" />
+            <input type="submit" asp-page-handler="RoomSearch" value="Search" class="btn btn-primary" />
+        </form>
+    </div>
+</div>
+<table class="table table-bordered table-hover table-striped" width="60%">
+    <col style="width: 5%">
+    <col style="width: 77%">
+    <col style="width: 9%">
+    <col style="width: 9%">
+    <thead>
+        <tr>
+            <th>
+                RoomID
+            </th>
+            <th>
+                RoomTitle
+            </th>
+            <th>
+                RoomName
+            </th>
+            <th>
+                IT-Tools
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Rooms != null)
+        {
+            foreach (var room in Model.Rooms)
+            {
+                <tr>
+                    <td>
+                        @room.RoomID
+                    </td>
+                    <td>
+                        @room.Title
+                    </td>
+                    <td>
+                        @room.Name
+                    </td>
+                    <td>
+                        @room.IT_Tools
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>

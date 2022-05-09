@@ -18,15 +18,16 @@ namespace Zealandic_Booking.Pages.Room
         }
 
         public List<Models.Room> Rooms { get;  private set; }
+        [BindProperty] public int ID { get; private set; }
         
         public IActionResult OnGet()
         {
             Rooms = roomService.GetRooms().ToList();
             return Page();
         }
-        public IActionResult OnPost(int id)
+        public IActionResult OnPostRoomSearch()
         {
-            Rooms = roomService.GetRoomList(id).ToList();
+            Rooms = roomService.GetRoomList(ID).ToList();
             return Page();
         }
     }
