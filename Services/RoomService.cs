@@ -16,7 +16,7 @@ namespace Zealandic_Booking.Services
             DbService = dbService;
             rooms = dbService.GetObjectsAsync().Result.ToList();
         }
-        public async void AddItem(Room room)
+        public async void AddRoom(Room room)
         {
             rooms.Add(room);
             await DbService.AddObjectAsync(room);
@@ -26,7 +26,7 @@ namespace Zealandic_Booking.Services
             return rooms;
         }
 
-        public IEnumerable<Room> GetRoom(int id)
+        public IEnumerable<Room> GetRoomList(int id)
         {
             List<Room> roomSearch = new List<Room>();
             foreach (Room room in rooms)
@@ -39,6 +39,11 @@ namespace Zealandic_Booking.Services
             }
             //return (from room in rooms where room.RoomID == id select room).FirstOrDefault();
             return roomSearch;
+        }
+
+        public Room GetRoom(int id)
+        {
+            return (from room in rooms where room.RoomID == id select room).FirstOrDefault();
         }
 
         public async Task DeleteRoom(int roomId)
