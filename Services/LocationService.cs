@@ -16,7 +16,7 @@ namespace Zealandic_Booking.Services
             DbService = dbService;
             locations = dbService.GetObjectsAsync().Result.ToList();
         }
-        public async void AddItem(Location location)
+        public async void AddLocation(Location location)
         {
             locations.Add(location);
             await DbService.AddObjectAsync(location);

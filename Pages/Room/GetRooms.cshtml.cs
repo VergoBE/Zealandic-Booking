@@ -26,7 +26,7 @@ namespace Zealandic_Booking.Pages.Room
         }
         public IActionResult OnPost(int id)
         {
-            Rooms = roomService.GetRoom(id).ToList();
+            Rooms = roomService.GetRoomList(id).ToList();
             return Page();
         }
     }

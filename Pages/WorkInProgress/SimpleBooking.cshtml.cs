@@ -48,14 +48,24 @@ namespace Zealandic_Booking.Pages.WorkInProgress
         public int day { get; set; }
         public Models.Room room { get; set; }
         public Models.User user { get; set; }
-        public int time { get; set; }
+        public Models.Booking booking { get; set; }
+        public string time { get; set; }
         public int postRoomID { get; set; }
         public int postUserID { get; set; }
+        private DateTime datetime;
+        private string buffer;
 
-        public void OnPost(int year, int month, int day, int postRoomID, int postUserID, int time)
+        public void OnPost(int year, int month, int day, int postRoomID, int postUserID, string time)
         {
+            Bookings = bookingService.GetBookings().ToList();
+            Users = userService.GetUsers().ToList();
+            Rooms = roomService.GetRooms().ToList();
             room = roomService.GetRoom(postRoomID);
             user = userService.GetUser(postUserID);
+            buffer = year.ToString() + "/" + month.ToString() + "/" + day.ToString() + " " + time;
+            datetime = DateTime.Parse(buffer);
+            booking = new Models.Booking(null, datetime, postRoomID, postUserID);
+            bookingService.AddBooking(booking);
         }
     }
 }
