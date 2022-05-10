@@ -24,31 +24,32 @@
         </tr>
     </thead>
     <tbody>
-        @if (Model.Bookings != null)
+    @if (Model.Bookings != null)
+    {
+        foreach (var booking in Model.Bookings)
         {
-            foreach (var booking in Model.Bookings)
-            {
-                <tr>
-                    <td>
-                        @booking.BookingID
-                    </td>
-                    <td>
-                        @booking.Time
-                    </td>
-                    <td>
-                        @booking.User
-                    </td>
-                    <td>
-                        @booking.Room
-                    </td>
-                    <td>
-                        <ul class="list-inline m-0" >
-                            <li class="list-inline-item">
-                                <a class="btn btn-danger btn-sm" type="button" data-toggle="tooltip" data-placement="top"title="Delete" asp-page="DeleteBooking" asp-route-id="@booking.BookingID"><i class="fa fa-trash"></i></a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            }
+        <tr>
+            <td>
+                @booking.BookingID
+            </td>
+            <td>
+                @booking.Time
+            </td>
+            <td>
+                @booking.User.Name
+            </td>
+            <td>
+                @booking.Room.Name
+            </td>
+            <td>
+                <ul class="list-inline m-0" >
+                    <li class="list-inline-item">
+                        <a class="btn btn-danger btn-sm" type="button" data-toggle="tooltip" data-placement="top"title="Delete" asp-page="DeleteBooking" asp-route-id="@booking.BookingID"><i class="fa fa-trash"></i></a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
         }
+    }
     </tbody>
+</table>
