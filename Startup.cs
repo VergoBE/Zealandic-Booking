@@ -58,7 +58,8 @@ namespace Zealandic_Booking
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Administrator", policy =>
-                    policy.RequireClaim(ClaimTypes.Role, "admin"));
+                    policy.RequireClaim(ClaimTypes.Role, "admin","Teacher","Student"));
+                
             });
 
 
