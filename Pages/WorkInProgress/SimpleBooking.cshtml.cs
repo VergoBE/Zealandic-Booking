@@ -60,7 +60,7 @@ namespace Zealandic_Booking.Pages.WorkInProgress
         //public int postUserID { get; set; }
         private DateTime datetime;
         private string buffer;
-        private string message;
+        public string Message { get; set; }
         
 
         public async Task<IActionResult> OnPost(int year, int month, int day, int postRoomID, int postUserID, string time)
@@ -86,7 +86,7 @@ namespace Zealandic_Booking.Pages.WorkInProgress
                 }
                 else if(postUserID == number || time == datetime.ToString() )
                 {
-                    message = "Du har allerede booked!";
+                    Message = "Du har allerede booked!";
                 }
             return RedirectToPage("/Index");
         }
