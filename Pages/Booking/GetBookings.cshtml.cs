@@ -37,8 +37,16 @@ namespace Zealandic_Booking.Pages.Booking
             Bookings = (from booking in Bookings orderby booking.Time.Date select booking).ToList();
             users = userService.GetUsers();
             rooms = roomService.GetRooms();
+            var threeDays = DateTime.Today.AddDays(3);
             foreach (var booking in Bookings)
             {
+                //if (booking.Time.CompareTo(threeDays) > 1)
+                //{
+                   
+                //}
+                    //if (Enumerable.Range(DateTime.Today.Day,threeDays.Day).Contains(booking.Time.Day))
+                //{
+                //}
                 foreach (var user in users)
                 {
                     if (booking.UserID == user.UserID)
