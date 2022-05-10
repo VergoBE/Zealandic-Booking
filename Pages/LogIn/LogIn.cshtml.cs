@@ -46,12 +46,11 @@ namespace Zealandic_Booking.Pages.LogIn
                         //LoggedInUser = user;
                         var claims = new List<Claim>
                         {
-                            new Claim(ClaimTypes.Name, UserName),
                             new Claim(ClaimTypes.Role, user.Role)
                         };
 
                         if (Role == "Teacher") claims.Add(new Claim(ClaimTypes.Role, "Teacher"));
-                        if (UserName == "admin") claims.Add(new Claim(ClaimTypes.Role, "admin"));
+                        if (Role == "admin") claims.Add(new Claim(ClaimTypes.Role, "admin"));
                         if (Role == "Student")claims.Add( new Claim(ClaimTypes.Role, "Student"));
 
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
