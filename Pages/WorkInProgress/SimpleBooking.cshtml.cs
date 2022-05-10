@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -75,18 +76,18 @@ namespace Zealandic_Booking.Pages.WorkInProgress
                 user = userService.GetUser(postUserID);
             var id = Bookings.Select(b => b.UserID);
             foreach(int number in id)
-                
-            if (number != postUserID)
-            {
+                if (number != postUserID || time != datetime.ToString())
+                {
+                CultureInfo cultureInfoCreate = CultureInfo.CreateSpecificCulture("en-DK");
                 buffer = year.ToString() + "/" + month.ToString() + "/" + day.ToString() + " " + time;
-                datetime = DateTime.Parse(buffer);
+                datetime = DateTime.Parse(buffer,cultureInfoCreate);
                 booking = new Models.Booking(null, datetime, postRoomID, postUserID);
                 await bookingService.AddBooking(booking);
-            }
-            else if(postUserID == number)
-            {
-                message = "Du har allerede booked!";
-            }
+                }
+                else if(postUserID == number || time == datetime.ToString() )
+                {
+                    message = "Du har allerede booked!";
+                }
             return RedirectToPage("/Index");
         }
     }
