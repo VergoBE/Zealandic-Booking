@@ -20,6 +20,7 @@ namespace Zealandic_Booking.Pages.WorkInProgress
         public List<Models.Booking> Bookings { get; private set; }
         public List<Models.User> Users { get; private set; }
         public List<Models.Room> Rooms { get; private set; }
+        public List<DateTime> allDateTimes { get; private set; }
         public SimpleBookingModel(BookingService bookingService, RoomService roomService, UserService userService)
         {
             this.bookingService = bookingService;
@@ -40,22 +41,26 @@ namespace Zealandic_Booking.Pages.WorkInProgress
             Bookings = bookingService.GetBookings().ToList();
             Users = userService.GetUsers().ToList();
             Rooms = roomService.GetRooms().ToList();
+            foreach (var item in Bookings)
+            {
+                //allDateTimes.Add(item.Time);
+            }
             return Page();
         }
 
-        public int year { get; set; }
-        public int month { get; set; }
-        public int day { get; set; }
+        //public int year { get; set; }
+        //public int month { get; set; }
+        //public int day { get; set; }
         public Models.Room room { get; set; }
         public Models.User user { get; set; }
         public Models.Booking booking { get; set; }
-        public string time { get; set; }
-        public int postRoomID { get; set; }
-        public int postUserID { get; set; }
+        //public string time { get; set; }
+        //public int postRoomID { get; set; }
+        //public int postUserID { get; set; }
         private DateTime datetime;
         private string buffer;
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPost(int year, int month, int day, int postRoomID, int postUserID, string time)
         {
             if (!ModelState.IsValid)
             {

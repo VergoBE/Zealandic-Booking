@@ -15,6 +15,8 @@
         $("#DT_Day").keyup(function() {
             DT_Function();
         });
+        //var bookings = @Model.allDateTimes;
+        //console.log(bookings);
     });
 
     
@@ -32,15 +34,14 @@
         else if (Day > 31) {
             $("#DT_Day").val(31);
         }
-        console.log(Year);
-        console.log(Month);
-        console.log(Day);
+        
+
     }
 </script>
 <form method="post">
     <div style="width: 440px" class="col-md-12">
         <div class="">
-            <select class="form-control btn-dark" asp-for="postRoomID" aria-label="Room Select Form">
+            <select class="form-control btn-dark" name="postRoomID" aria-label="Room Select Form">
                 @foreach (var room in Model.Rooms)
                 {
                     <option value="@room.RoomID">Name: @room.Name | Title: @room.Title | IT: @room.IT_Tools</option>
@@ -49,7 +50,7 @@
         </div>
         
         <div class="mt-2">
-            <select class="form-control btn-dark" asp-for="postUserID" aria-label="User Select Form">
+            <select class="form-control btn-dark" name="postUserID" aria-label="User Select Form">
                 @foreach (var user in Model.Users)
                 {
                     <option value="@user.UserID">Name: @user.Name</option>
@@ -61,72 +62,72 @@
             <div class="input-group-prepend">
                 <span class="input-group-text text-dark" id="basic-addon1">Year</span>
             </div>
-            <input maxlength="4" type="text" id="DT_Year" class="form-control btn-dark DT_Year" asp-for="year" value="@Model.currentYear" aria-label="Year" aria-describedby="basic-addon1">
+            <input maxlength="4" type="text" id="DT_Year" class="form-control btn-dark DT_Year" name="year" value="@Model.currentYear" aria-label="Year" aria-describedby="basic-addon1">
             <div class="input-group-prepend ml-2">
                 <span class="input-group-text text-dark" id="basic-addon2">Month</span>
             </div>
-            <input maxlength="2" type="text" id="DT_Month" class="form-control btn-dark" asp-for="month" value="@Model.currentMonth" aria-label="Month" aria-describedby="basic-addon2">
+            <input maxlength="2" type="text" id="DT_Month" class="form-control btn-dark" name="month" value="@Model.currentMonth" aria-label="Month" aria-describedby="basic-addon2">
             <div class="input-group-prepend ml-2">
                 <span class="input-group-text text-dark" id="basic-addon3">Day</span>
             </div>
-            <input maxlength="2" type="text" id="DT_Day" class="form-control btn-dark" asp-for="day" value="@Model.currentDay" aria-label="Day" aria-describedby="basic-addon3">
+            <input maxlength="2" type="text" id="DT_Day" class="form-control btn-dark" name="day" value="@Model.currentDay" aria-label="Day" aria-describedby="basic-addon3">
         </div>
         
         <div class="btn-group mt-2 text-center" data-toggle="buttons">
             <fieldset>
                 <div>
                     <label class="btn btn-dark active" style="font-size: 10px" for="inlineRadio1">
-                        <input type="radio" name="Time" id="inlineRadio1" asp-for="time" value="00.00.00" checked> 00:00 - 02:00
+                        <input type="radio"  id="inlineRadio1" name="time" value="00.00.00" checked> 00:00 - 02:00
                     </label>
     
                     <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio2">
-                        <input type="radio" name="Time" id="inlineRadio2" asp-for="time" value="02.00.00"> 02:00 - 04:00
+                        <input type="radio"  id="inlineRadio2" name="time" value="02.00.00"> 02:00 - 04:00
                     </label>
     
                     <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio3">
-                        <input type="radio" name="Time" id="inlineRadio3" asp-for="time" value="04.00.00"> 04:00 - 06:00
+                        <input type="radio"  id="inlineRadio3" name="time" value="04.00.00"> 04:00 - 06:00
                     </label>
     
                     <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio4">
-                        <input type="radio" name="Time" id="inlineRadio4" asp-for="time" value="06.00.00"> 06:00 - 08:00
+                        <input type="radio"  id="inlineRadio4" name="time" value="06.00.00"> 06:00 - 08:00
                     </label>
                 </div>
     
                 <div>
                     <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio5">
-                        <input type="radio" name="Time" id="inlineRadio5" asp-for="time" value="08.00.00"> 08:00 - 10:00
+                        <input type="radio"  id="inlineRadio5" name="time" value="08.00.00"> 08:00 - 10:00
                     </label>
     
                     <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio6">
-                        <input type="radio" name="Time" id="inlineRadio6" asp-for="time" value="10.00.00"> 10:00 - 12:00
+                        <input type="radio"  id="inlineRadio6" name="time" value="10.00.00"> 10:00 - 12:00
                     </label>
     
                     <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio7">
-                        <input type="radio" name="Time" id="inlineRadio7" asp-for="time" value="12.00.00"> 12:00 - 14:00
+                        <input type="radio"  id="inlineRadio7" name="time" value="12.00.00"> 12:00 - 14:00
                     </label>
     
                     <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio8">
-                        <input type="radio" name="Time" id="inlineRadio8" asp-for="time" value="14.00.00"> 14:00 - 16:00
+                        <input type="radio"  id="inlineRadio8" name="time" value="14.00.00"> 14:00 - 16:00
                     </label>
                 </div>
     
                 <div>
                     <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio9">
-                        <input type="radio" name="Time" id="inlineRadio9" asp-for="time" value="16.00.00"> 16:00 - 18:00
+                        <input type="radio"  id="inlineRadio9" name="time" value="16.00.00"> 16:00 - 18:00
                     </label>
     
     
                     <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio10">
-                        <input type="radio" name="Time" id="inlineRadio10" asp-for="time" value="18.00.00"> 18:00 - 20:00
+                        <input type="radio"  id="inlineRadio10" name="time" value="18.00.00"> 18:00 - 20:00
                     </label>
     
                     <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio11">
-                        <input type="radio" name="Time" id="inlineRadio11" asp-for="time" value="20.00.00"> 20:00 - 22:00
+                        <input type="radio"  id="inlineRadio11" name="time" value="20.00.00"> 20:00 - 22:00
                     </label>
     
     
                     <label class="btn btn-dark" style="font-size: 10px" for="inlineRadio12">
-                        <input type="radio" name="Time" id="inlineRadio12" asp-for="time" value="22.00.00"> 22:00 - 00:00
+                        <input type="radio"  id="inlineRadio12" name="time" value="22.00.00"> 22:00 - 00:00
                     </label>
                 </div>
             </fieldset>
