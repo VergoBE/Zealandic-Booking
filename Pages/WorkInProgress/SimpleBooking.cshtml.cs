@@ -59,6 +59,8 @@ namespace Zealandic_Booking.Pages.WorkInProgress
         //public int postUserID { get; set; }
         private DateTime datetime;
         private string buffer;
+        private string message;
+        
 
         public async Task<IActionResult> OnPost(int year, int month, int day, int postRoomID, int postUserID, string time)
         {
@@ -66,16 +68,25 @@ namespace Zealandic_Booking.Pages.WorkInProgress
             {
                 return Page();
             }
-            Bookings = bookingService.GetBookings().ToList();
-            Users = userService.GetUsers().ToList();
-            Rooms = roomService.GetRooms().ToList();
-            room = roomService.GetRoom(postRoomID);
-            user = userService.GetUser(postUserID);
-            
-            buffer = year.ToString() + "/" + month.ToString() + "/" + day.ToString() + " " + time;
-            datetime = DateTime.Parse(buffer);
-            booking = new Models.Booking(null, datetime, postRoomID, postUserID);
-            await bookingService.AddBooking(booking);
+                Bookings = bookingService.GetBookings().ToList();
+                Users = userService.GetUsers().ToList();
+                Rooms = roomService.GetRooms().ToList();
+                room = roomService.GetRoom(postRoomID);
+                user = userService.GetUser(postUserID);
+            var id = Bookings.Select(b => b.UserID);
+            foreach(int number in id)
+                
+            if (number != postUserID)
+            {
+                buffer = year.ToString() + "/" + month.ToString() + "/" + day.ToString() + " " + time;
+                datetime = DateTime.Parse(buffer);
+                booking = new Models.Booking(null, datetime, postRoomID, postUserID);
+                await bookingService.AddBooking(booking);
+            }
+            else if(postUserID == number)
+            {
+                message = "Du har allerede booked!";
+            }
             return RedirectToPage("/Index");
         }
     }
