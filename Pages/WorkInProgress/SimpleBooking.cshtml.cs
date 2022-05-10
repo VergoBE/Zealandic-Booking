@@ -76,7 +76,7 @@ namespace Zealandic_Booking.Pages.WorkInProgress
                 user = userService.GetUser(postUserID);
             var id = Bookings.Select(b => b.UserID);
             foreach(int number in id)
-                if (number != postUserID)
+                if (number != postUserID || time != datetime.ToString())
                 {
                 CultureInfo cultureInfoCreate = CultureInfo.CreateSpecificCulture("en-DK");
                 buffer = year.ToString() + "/" + month.ToString() + "/" + day.ToString() + " " + time;
@@ -84,7 +84,7 @@ namespace Zealandic_Booking.Pages.WorkInProgress
                 booking = new Models.Booking(null, datetime, postRoomID, postUserID);
                 await bookingService.AddBooking(booking);
                 }
-                else if(postUserID == number)
+                else if(postUserID == number || time == datetime.ToString() )
                 {
                     message = "Du har allerede booked!";
                 }
