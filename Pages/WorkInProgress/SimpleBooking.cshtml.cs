@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -60,6 +61,8 @@ namespace Zealandic_Booking.Pages.WorkInProgress
         //public int postUserID { get; set; }
         private DateTime datetime;
         private string buffer;
+        //private string message;
+        
 
         public async Task<IActionResult> OnPost(int year, int month, int day, int postRoomID, int postUserID, string time)
         {

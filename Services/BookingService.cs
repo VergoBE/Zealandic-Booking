@@ -38,7 +38,7 @@ namespace Zealandic_Booking.Services
             return (from booking in bookings where booking.BookingID == id select booking).FirstOrDefault();
             //return null;
         }
-
+        
         public Booking DeleteBooking(int bookingId)
         {
             //Booking bookingToBeDeleted = null;

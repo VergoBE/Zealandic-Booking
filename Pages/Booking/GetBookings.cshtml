@@ -16,10 +16,13 @@
                 BookingTime
             </th>
             <th>
-                Username
+                Booked by
             </th>
             <th>
-                RoomTitle
+                Room name
+            </th>
+            <th>
+                Options
             </th>
         </tr>
     </thead>
@@ -42,10 +45,19 @@
                 @booking.Room.Name
             </td>
             <td>
-                <ul class="list-inline m-0" >
-                    <li class="list-inline-item">
-                        <a class="btn btn-danger btn-sm" type="button" data-toggle="tooltip" data-placement="top"title="Delete" asp-page="DeleteBooking" asp-route-id="@booking.BookingID"><i class="fa fa-trash"></i></a>
-                    </li>
+
+                <ul class="list-inline m-0">
+                    @{
+                        if (booking.Time.CompareTo(DateTime.Today.AddDays(3)) >= 1)
+                        {
+
+                            <li class="list-inline-item">
+                                <a class="btn btn-danger btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="Delete" asp-page="DeleteBooking" asp-route-id="@booking.BookingID">Delete<i class="fa fa-trash"></i></a>
+                            </li>
+
+
+                        }
+                    }
                 </ul>
             </td>
         </tr>
