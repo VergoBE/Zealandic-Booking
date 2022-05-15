@@ -41,9 +41,10 @@ namespace Zealandic_Booking.Pages.WorkInProgress
             Bookings = bookingService.GetBookings().ToList();
             Users = userService.GetUsers().ToList();
             Rooms = roomService.GetRooms().ToList();
-            foreach (var item in Bookings)
+            allDateTimes = new List<DateTime>(Bookings.Count);
+            foreach (Models.Booking item in Bookings)
             {
-                //allDateTimes.Add(item.Time);
+                allDateTimes.Add(item.Time);
             }
             return Page();
         }
@@ -75,8 +76,17 @@ namespace Zealandic_Booking.Pages.WorkInProgress
             buffer = year.ToString() + "/" + month.ToString() + "/" + day.ToString() + " " + time;
             datetime = DateTime.Parse(buffer);
             booking = new Models.Booking(null, datetime, postRoomID, postUserID);
+            foreach(Models.Booking item in Bookings)
+            {
+                if (item.RoomID == booking.RoomID && item.Time == booking.Time)
+                {
+                    return RedirectToPage("/Index");
+                }
+            }
             await bookingService.AddBooking(booking);
             return RedirectToPage("/Index");
         }
+
+
     }
 }
