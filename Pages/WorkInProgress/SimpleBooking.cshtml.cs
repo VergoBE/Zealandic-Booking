@@ -75,11 +75,13 @@ namespace Zealandic_Booking.Pages.WorkInProgress
             Rooms = roomService.GetRooms().ToList();
             room = roomService.GetRoom(postRoomID);
             user = userService.GetUser(postUserID);
-            
+
+            CultureInfo cultureInfoCreate = CultureInfo.CreateSpecificCulture("en-DK");
             buffer = year.ToString() + "/" + month.ToString() + "/" + day.ToString() + " " + time;
             datetime = DateTime.Parse(buffer);
             booking = new Models.Booking(null, datetime, postRoomID, postUserID);
-            foreach(Models.Booking item in Bookings)
+            var id = Bookings.Select(b => b.UserID);
+            foreach (Models.Booking item in Bookings)
             {
                 if (item.RoomID == booking.RoomID && item.Time == booking.Time)
                 {
