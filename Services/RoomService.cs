@@ -41,7 +41,7 @@ namespace Zealandic_Booking.Services
             return roomSearch;
         }
 
-        public Room GetRoom(int id)
+        public Room GetRoom(int? id)
         {
             return (from room in rooms where room.RoomID == id select room).FirstOrDefault();
         }

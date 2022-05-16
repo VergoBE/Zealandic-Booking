@@ -11,11 +11,28 @@ namespace Zealandic_Booking.Services
     {
         private List<Booking> bookings;
         public DBService<Booking> DbService { get; set; }
+        private UserService userService;
+        private RoomService roomService;
 
-        public BookingService(DBService<Booking> dbService)
+        public BookingService(DBService<Booking> dbService, UserService uService, RoomService rService)
         {
             DbService = dbService;
             bookings = dbService.GetObjectsAsync().Result.ToList();
+            userService = uService;
+            roomService = rService;
+            //users = userService.GetUsers();
+            foreach (var singleBooking in bookings)
+            {
+                User singleuser = userService.GetUser(singleBooking.UserID);
+                singleBooking.User = singleuser;
+                int bIndex = bookings.FindIndex(a => a.UserID == singleBooking.UserID);
+                bookings[bIndex].User = singleuser;
+                Room singleRoom = roomService.GetRoom(singleBooking.RoomID);
+                singleBooking.Room = singleRoom;
+                bIndex = bookings.FindIndex(a => a.RoomID == singleBooking.RoomID);
+                bookings[bIndex].User = singleuser;
+            }
+
         }
         public async Task AddBooking(Booking booking)
         {

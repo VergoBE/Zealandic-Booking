@@ -40,16 +40,18 @@ namespace Zealandic_Booking.Pages.Booking
             {
                 return Page();
             }
+            _bookingService.DeleteBooking(id);
+            //Message = "the booking at " + booking.Time.Date + " is deleted";
             foreach (var booking in bookings)
             {
                 foreach (var user in users)
                 {
                     booking.User = user;
                 }
-                if (booking.User.Role == "student")
+
+                if (booking.User.Role == "student" )
                 {
-                    _bookingService.DeleteBooking(id);
-                    Message = "the booking at "+booking.Time.Date+" is deleted";
+                    
                     //MailMessage eMailMessage = new MailMessage();
                     //eMailMessage.From = new MailAddress("email@edu.zealand.dk",User.Identity.ToString());
                     //eMailMessage.To.Add(new MailAddress(booking.User.Username+"@edu.zealand.dk",booking.User.Name));
@@ -66,9 +68,9 @@ namespace Zealandic_Booking.Pages.Booking
 
             }
 
-            return Page();
+            //return Page();
 
-            //return RedirectToPage("GetBookings");
+            return RedirectToPage("GetBookings");
         }
     }
 }
