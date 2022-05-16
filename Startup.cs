@@ -52,13 +52,15 @@ namespace Zealandic_Booking
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(cookieOptions =>
             {
-                cookieOptions.LoginPath = "/Login/LoginPage";
+                cookieOptions.LoginPath = "/LogIn/LogIn";
             });
 
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Administrator", policy =>
-                    policy.RequireClaim(ClaimTypes.Role, "admin","Teacher","Student"));
+                    policy.RequireClaim(ClaimTypes.Role, "admin"));
+                options.AddPolicy("student", policy => policy.RequireClaim(ClaimTypes.Role, "student" ));
+                options.AddPolicy("teacher", policy => policy.RequireClaim(ClaimTypes.Role, "teacher" ));
                 
             });
 
@@ -66,7 +68,7 @@ namespace Zealandic_Booking
 
             services.AddMvc().AddRazorPagesOptions(options =>
             {
-                options.Conventions.AuthorizeFolder("/Item");
+                options.Conventions.AuthorizeFolder("/Admin");
             }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
