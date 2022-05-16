@@ -12,7 +12,7 @@ using Zealandic_Booking.Services;
 
 namespace Zealandic_Booking.Pages.Admin
 {
-    //[Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin")]
     public class CreateUserModel : PageModel
     {
         
