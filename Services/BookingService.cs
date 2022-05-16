@@ -15,8 +15,6 @@ namespace Zealandic_Booking.Services
         private IEnumerable<User> users;
         private IEnumerable<Models.Room> rooms;
         public DBService<Booking> DbService { get; set; }
-        private UserService userService;
-        private RoomService roomService;
 
         public BookingService(DBService<Booking> dbService,UserService uService,RoomService rService)
         {
