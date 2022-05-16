@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Zealandic_Booking.Services;
 
 namespace Zealandic_Booking.Models
 {
@@ -22,6 +23,8 @@ namespace Zealandic_Booking.Models
         public int? UserID { get; set; }
         public Room Room { get; set; }
         public User User { get; set; }
+        private UserService UserService { get; set; }
+        
 
         public Booking(int? bookingId, DateTime bookingTime, int roomId, int userId)
         {

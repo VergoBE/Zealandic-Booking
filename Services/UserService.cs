@@ -26,7 +26,7 @@ namespace Zealandic_Booking.Services
             return users;
         }
 
-        public User GetUser(int id)
+        public User GetUser(int? id)
         {
             //foreach (User user in users)
             //{

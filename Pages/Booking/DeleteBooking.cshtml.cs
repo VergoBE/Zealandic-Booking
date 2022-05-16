@@ -40,16 +40,20 @@ namespace Zealandic_Booking.Pages.Booking
             {
                 return Page();
             }
-            foreach (var booking in bookings)
+
+            Models.Booking singleBooking = _bookingService.GetBooking(id);
+            User user = userService.GetUser(singleBooking.UserID);
+            singleBooking.User = user;
+            if (singleBooking.User.Role == "student")
             {
-                foreach (var user in users)
-                {
-                    booking.User = user;
-                }
-                if (booking.User.Role == "student")
-                {
-                    _bookingService.DeleteBooking(id);
-                    Message = "the booking at "+booking.Time.Date+" is deleted";
+                _bookingService.DeleteBooking(id);
+                Message = "the booking at " + singleBooking.Time + " is deleted";
+            }
+            else
+            {
+                
+            }
+           
                     //MailMessage eMailMessage = new MailMessage();
                     //eMailMessage.From = new MailAddress("email@edu.zealand.dk",User.Identity.ToString());
                     //eMailMessage.To.Add(new MailAddress(booking.User.Username+"@edu.zealand.dk",booking.User.Name));
@@ -62,14 +66,13 @@ namespace Zealandic_Booking.Pages.Booking
                     //    MailClient.Credentials = new System.Net.NetworkCredential("account2@gmail.com", "password");
                     //    MailClient.Send(eMailMessage);
                     //}
-                }
-
-            }
-
             return Page();
+        }
+
+            
 
             //return RedirectToPage("GetBookings");
-        }
     }
 }
+
 
