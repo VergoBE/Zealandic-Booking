@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.IdentityModel.Tokens;
+using Zealandic_Booking.Models;
 using Zealandic_Booking.Services;
 
 namespace Zealandic_Booking.Pages.WorkInProgress
@@ -70,6 +72,9 @@ namespace Zealandic_Booking.Pages.WorkInProgress
             {
                 return Page();
             }
+
+
+            //AuthorizeAttribute.GetCustomAttribute("UserID", null);
             Bookings = bookingService.GetBookings().ToList();
             Users = userService.GetUsers().ToList();
             Rooms = roomService.GetRooms().ToList();
