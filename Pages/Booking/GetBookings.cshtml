@@ -48,7 +48,7 @@
 
                 <ul class="list-inline m-0">
                     @{
-                        if (booking.Time.CompareTo(DateTime.Today.AddDays(3)) >= 1)
+                        if (booking.Time.CompareTo(DateTime.Today.AddDays(3)) >= 1 && booking.User.Role == "student")
                         {
 
                             <li class="list-inline-item">
