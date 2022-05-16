@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.IdentityModel.Tokens;
@@ -73,8 +75,8 @@ namespace Zealandic_Booking.Pages.WorkInProgress
                 return Page();
             }
 
-
-            //AuthorizeAttribute.GetCustomAttribute("UserID", null);
+            string currentUserID = HttpContext.User.Identities.First().Claims.ElementAt(1).Value;
+            
             Bookings = bookingService.GetBookings().ToList();
             Users = userService.GetUsers().ToList();
             Rooms = roomService.GetRooms().ToList();
@@ -84,7 +86,7 @@ namespace Zealandic_Booking.Pages.WorkInProgress
             CultureInfo cultureInfoCreate = CultureInfo.CreateSpecificCulture("en-DK");
             buffer = year.ToString() + "/" + month.ToString() + "/" + day.ToString() + " " + time;
             datetime = DateTime.Parse(buffer);
-            booking = new Models.Booking(null, datetime, postRoomID, postUserID);
+            booking = new Models.Booking(null, datetime, postRoomID, Int32.Parse(currentUserID));
             var id = Bookings.Select(b => b.UserID);
             foreach (Models.Booking item in Bookings)
             {
