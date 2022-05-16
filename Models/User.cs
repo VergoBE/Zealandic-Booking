@@ -11,7 +11,7 @@ namespace Zealandic_Booking.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserID { get; set; }
+        public int? UserID { get; set; }
         [Required]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "The user's name cannot be longer than 50 characters.")]
         public string Name { get; set; }
@@ -27,7 +27,7 @@ namespace Zealandic_Booking.Models
         public virtual ICollection<Booking> Bookings { get; set; }
 
 
-        public User(int userId, string name, string role, string username, string password)
+        public User(int? userId, string name, string role, string username, string password)
         {
             UserID = userId;
             Name = name;

@@ -24,7 +24,6 @@
     function GetBookings(Year, Month, Day, roomID) {
         $.ajax({
             url:  '/WorkInProgress/BookingController',
-            //type: "POST", //send it through get method
             data: { "Year": Year, "Month": Month, "Day": Day, "roomID": roomID},
             success: function (data) {
                 $("#wow").text(data);
@@ -175,7 +174,7 @@
 
             },
             error: function (xhr) {
-                console.log("feck");
+                console.log("Something went wrong. Please consult Zealandic Booking at 20581337");
             }
         });
     }

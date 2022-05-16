@@ -8,24 +8,23 @@
         <form method="post">
             
             <div class="form-group">
-                <label asp-for="@Model.Name" class="control-lable"></label>
-                <input asp-for="@Model.Name" class="form-control" />
+                <label asp-for="@Model.Name" class="control-lable">Name</label>
+                <input name="gName" asp-for="@Model.Name" class="form-control" />
             </div>
             <div class="">
-                <select class="form-control btn-dark" name="Role" aria-label="Roles">
-                    @foreach (var user in Model.Users)
-                    {
-                        <option value="@user.Role">@user.Role</option>
-                    }
+                <select class="form-control btn-dark" name="gRole" aria-label="Roles">
+                    <option value="admin">Admin</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="User">User</option>
                 </select>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.UserName" class="control-lable"></label>
-                <input asp-for="@Model.UserName" class="form-control" />
+                <input asp-for="@Model.UserName" name="gUserName" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Password" class="control-lable"></label>
-                <input asp-for="@Model.Password" class="form-control" />
+                <input asp-for="@Model.Password" name="gPassword" class="form-control" />
 
             </div>
 

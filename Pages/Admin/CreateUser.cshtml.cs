@@ -12,7 +12,7 @@ using Zealandic_Booking.Services;
 
 namespace Zealandic_Booking.Pages.Admin
 {
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public class CreateUserModel : PageModel
     {
         
@@ -20,18 +20,22 @@ namespace Zealandic_Booking.Pages.Admin
         private PasswordHasher<string> passwordHasher;
         public List<User> Users { get; set; }
 
+        [Required(ErrorMessage = "UserName is required")]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "The user's UserName cannot be longer than 100 characters.")]
         [BindProperty]
         public string UserName { get; set; }
         public int UserID { get; set; }
-        
-        [Required]
+
+        [Required(ErrorMessage = "Name is required")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "The user's name cannot be longer than 50 characters.")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "Password is required")]
         [BindProperty, DataType(DataType.Password)]
         public string Password { get; set; }
+
         [Required]
-        [StringLength(50, ErrorMessage = "Role cannot be longer than 50 characters.")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "The user's role cannot be longer than 50 characters.")]
         public string Role { get; set; }
 
         public CreateUserModel(UserService userService)
@@ -45,13 +49,13 @@ namespace Zealandic_Booking.Pages.Admin
 
             return Page();
         }
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(String gName, String gRole, String gUserName, String gPassword)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            _userService.AddUser(new User(UserID, Name, Role, UserName, passwordHasher.HashPassword(null, Password)));
+            _userService.AddUser(new User(null, gName, gRole, gUserName, passwordHasher.HashPassword(null, gPassword)));
             return RedirectToPage("/Index");
         }
     }
