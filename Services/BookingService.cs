@@ -10,11 +10,15 @@ namespace Zealandic_Booking.Services
     public class BookingService : IBookingService
     {
         private List<Booking> bookings;
+        private UserService userService;
+        private RoomService roomService;
+        private IEnumerable<User> users;
+        private IEnumerable<Models.Room> rooms;
         public DBService<Booking> DbService { get; set; }
         private UserService userService;
         private RoomService roomService;
 
-        public BookingService(DBService<Booking> dbService, UserService uService, RoomService rService)
+        public BookingService(DBService<Booking> dbService,UserService uService,RoomService rService)
         {
             DbService = dbService;
             bookings = dbService.GetObjectsAsync().Result.ToList();
@@ -30,7 +34,7 @@ namespace Zealandic_Booking.Services
                 Room singleRoom = roomService.GetRoom(singleBooking.RoomID);
                 singleBooking.Room = singleRoom;
                 bIndex = bookings.FindIndex(a => a.RoomID == singleBooking.RoomID);
-                bookings[bIndex].User = singleuser;
+                bookings[bIndex].Room = singleRoom;
             }
 
         }
