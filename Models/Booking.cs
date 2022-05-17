@@ -17,6 +17,10 @@ namespace Zealandic_Booking.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Time { get; set; }
+        //[Required]
+        [DataType(DataType.MultilineText)]
+        //public JsonArrayAttribute GroupMembers { get; set; }
+
         [ForeignKey("Room")] 
         public int? RoomID { get; set; }
         [ForeignKey("User")] 

@@ -45,6 +45,7 @@ namespace Zealandic_Booking.Pages.LogIn
                         var claims = new List<Claim>
                         {
                             new Claim(ClaimTypes.Role, user.Role),
+                            new Claim(ClaimTypes.UserData, user.UserID.ToString()),
                             new Claim(ClaimTypes.Name, user.Name)
                         };
 

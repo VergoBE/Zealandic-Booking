@@ -20,23 +20,23 @@ namespace Zealandic_Booking.Pages.Admin
         private PasswordHasher<string> passwordHasher;
         public List<User> Users { get; set; }
 
-        [Required(ErrorMessage = "UserName is required")]
-        [StringLength(100, MinimumLength = 2, ErrorMessage = "The user's UserName cannot be longer than 100 characters.")]
-        [BindProperty]
-        public string UserName { get; set; }
-        public int UserID { get; set; }
-
-        [Required(ErrorMessage = "Name is required")]
-        [StringLength(50, MinimumLength = 2, ErrorMessage = "The user's name cannot be longer than 50 characters.")]
-        public string Name { get; set; }
-
-        [Required(ErrorMessage = "Password is required")]
-        [BindProperty, DataType(DataType.Password)]
-        public string Password { get; set; }
-
-        [Required]
-        [StringLength(50, MinimumLength = 2, ErrorMessage = "The user's role cannot be longer than 50 characters.")]
-        public string Role { get; set; }
+        //[Required(ErrorMessage = "UserName is required")]
+        //[StringLength(100, MinimumLength = 2, ErrorMessage = "The user's UserName cannot be longer than 100 characters.")]
+        //[BindProperty]
+        //public string UserName { get; set; }
+        //public int UserID { get; set; }
+        //
+        //[Required(ErrorMessage = "Name is required")]
+        //[StringLength(50, MinimumLength = 2, ErrorMessage = "The user's name cannot be longer than 50 characters.")]
+        //public string Name { get; set; }
+        //
+        //[Required(ErrorMessage = "Password is required")]
+        //[BindProperty, DataType(DataType.Password)]
+        //public string Password { get; set; }
+        //
+        //[Required]
+        //[StringLength(50, MinimumLength = 2, ErrorMessage = "The user's role cannot be longer than 50 characters.")]
+        //public string Role { get; set; }
 
         public CreateUserModel(UserService userService)
         {
