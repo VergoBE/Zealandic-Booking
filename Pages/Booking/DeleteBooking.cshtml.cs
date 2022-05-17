@@ -11,7 +11,7 @@ using Zealandic_Booking.Services;
 
 namespace Zealandic_Booking.Pages.Booking
 {
-    [Authorize(Roles = "Teacher,admin")]
+    [Authorize(Roles = "teacher,admin")]
     public class DeleteBookingModel : PageModel
     {
         private BookingService _bookingService;
