@@ -11,7 +11,7 @@ using Zealandic_Booking.Services;
 namespace Zealandic_Booking.Pages.Booking
 {
     
-    [Authorize(Roles = "admin,Teacher,Student")]
+    [Authorize(Roles = "admin,teacher,student")]
     public class GetBookingsModel : PageModel
     {
         private BookingService bookingService;
