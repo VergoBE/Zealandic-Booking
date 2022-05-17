@@ -92,6 +92,7 @@
             url: 'BookingController',
             data: { "Year": Year, "Month": Month, "Day": Day, "roomID": roomID },
             success: function (data) {
+                $("#wow").text(data);
                 $("#Tdate").text(Day+"/"+Month+"/"+Year);
                 $("#Troom").text($("#PRID option:selected").text());
 
@@ -274,8 +275,6 @@
             DT_Function();
         }
         GetBookings(Year, Month, Day, PostRoomID);
-
-
     }
 </script>
 

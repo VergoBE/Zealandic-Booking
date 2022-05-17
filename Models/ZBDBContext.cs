@@ -13,14 +13,16 @@ namespace Zealandic_Booking.Models
         public DbSet<Location> Locations { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Member> Members { get; set; }
 
-        protected ZBDBContext(DbSet<Booking> bookings, DbSet<Building> buildings, DbSet<Location> locations, DbSet<Room> rooms, DbSet<User> users)
+        protected ZBDBContext(DbSet<Booking> bookings, DbSet<Building> buildings, DbSet<Location> locations, DbSet<Room> rooms, DbSet<User> users, DbSet<Member> members)
         {
             Bookings = bookings;
             Buildings = buildings;
             Locations = locations;
             Rooms = rooms;
             Users = users;
+            Members = members;
         }
 
         public ZBDBContext()
@@ -44,6 +46,10 @@ namespace Zealandic_Booking.Models
                 .HasOne(l => l.Location);
             DatabaseBuilder.Entity<Building>().ToTable(nameof(Buildings))
                 .HasOne(l => l.Location);
+            DatabaseBuilder.Entity<Member>().ToTable(nameof(Members))
+                .HasOne(l => l.User);
+            DatabaseBuilder.Entity<Member>().ToTable(nameof(Members))
+                .HasOne(l => l.Booking);
         }
     }
 }

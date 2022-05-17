@@ -33,23 +33,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Room/GetRooms">All Rooms</a>
                         </li>
                         @{
                             if (Context.User.Identity.IsAuthenticated)
                             {
-                              
-                            if (User.IsInRole("teacher") || User.IsInRole("admin"))
-                            {
-                        <li class="nav-item">
-                         <a class="nav-link text-dark" asp-area="" asp-page="/Booking/GetBookings">View all bookings</a>
-                        </li>
-                                    } }
+
+                                if (User.IsInRole("teacher") || User.IsInRole("admin"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-page="/Booking/GetBookings">View all bookings</a>
+                                    </li>
+                                }
                             }
-                       
+                        }
+
                         @*<li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Admin/CreateUser">Create User</a>
-                        </li>*@
+            <a class="nav-link" asp-area="" asp-page="/Admin/CreateUser">Create User</a>
+        </li>*@
                         @{
                             if (Context.User.Identity.Name == "admin")
                             {

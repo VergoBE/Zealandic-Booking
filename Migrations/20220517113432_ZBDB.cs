@@ -113,6 +113,32 @@ namespace Zealandic_Booking.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Members",
+                columns: table => new
+                {
+                    MemberID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookingID = table.Column<int>(type: "int", nullable: true),
+                    UserID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Members", x => x.MemberID);
+                    table.ForeignKey(
+                        name: "FK_Members_Bookings_BookingID",
+                        column: x => x.BookingID,
+                        principalTable: "Bookings",
+                        principalColumn: "BookingID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Members_Users_UserID",
+                        column: x => x.UserID,
+                        principalTable: "Users",
+                        principalColumn: "UserID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_RoomID",
                 table: "Bookings",
@@ -129,6 +155,16 @@ namespace Zealandic_Booking.Migrations
                 column: "LocationID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Members_BookingID",
+                table: "Members",
+                column: "BookingID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Members_UserID",
+                table: "Members",
+                column: "UserID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Rooms_BuildingID",
                 table: "Rooms",
                 column: "BuildingID");
@@ -141,6 +177,9 @@ namespace Zealandic_Booking.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Members");
+
             migrationBuilder.DropTable(
                 name: "Bookings");
 

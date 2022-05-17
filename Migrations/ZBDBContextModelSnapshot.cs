@@ -21,7 +21,7 @@ namespace Zealandic_Booking.Migrations
 
             modelBuilder.Entity("Zealandic_Booking.Models.Booking", b =>
                 {
-                    b.Property<int>("BookingID")
+                    b.Property<int?>("BookingID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -88,6 +88,28 @@ namespace Zealandic_Booking.Migrations
                     b.ToTable("Locations");
                 });
 
+            modelBuilder.Entity("Zealandic_Booking.Models.Member", b =>
+                {
+                    b.Property<int?>("MemberID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("BookingID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("MemberID");
+
+                    b.HasIndex("BookingID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Members");
+                });
+
             modelBuilder.Entity("Zealandic_Booking.Models.Room", b =>
                 {
                     b.Property<int>("RoomID")
@@ -124,7 +146,7 @@ namespace Zealandic_Booking.Migrations
 
             modelBuilder.Entity("Zealandic_Booking.Models.User", b =>
                 {
-                    b.Property<int>("UserID")
+                    b.Property<int?>("UserID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -175,6 +197,21 @@ namespace Zealandic_Booking.Migrations
                         .HasForeignKey("LocationID");
 
                     b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("Zealandic_Booking.Models.Member", b =>
+                {
+                    b.HasOne("Zealandic_Booking.Models.Booking", "Booking")
+                        .WithMany()
+                        .HasForeignKey("BookingID");
+
+                    b.HasOne("Zealandic_Booking.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID");
+
+                    b.Navigation("Booking");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Zealandic_Booking.Models.Room", b =>
