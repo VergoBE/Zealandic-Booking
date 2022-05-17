@@ -47,9 +47,9 @@ namespace Zealandic_Booking.Pages.Booking
                 return RedirectToPage("GetBookings");
 
             }
-            else
+            else if(singleBooking.User.Role != "student" || singleBooking.User.Role != "teacher" || singleBooking.User.Role != "admin")
             {
-                
+                return RedirectToPage(".../Admin/AccessDenied");
             }
            
                     //MailMessage eMailMessage = new MailMessage();
