@@ -16,23 +16,22 @@ namespace Zealandic_Booking.Pages.Booking
     {
         private BookingService _bookingService;
         private List<Models.Booking> bookings;
-        private UserService userService;
-        private IEnumerable<User> users;
 
         [BindProperty] public string Message {get; set;}
 
 
-        public DeleteBookingModel(BookingService bookingService, UserService userService)
+        public DeleteBookingModel(BookingService bookingService)
         {
             this._bookingService = bookingService;
-            this.userService = userService;
             bookings = bookingService.GetBookings().ToList();
-            users = userService.GetUsers();
         }
-        [BindProperty] public Models.Booking Booking { get; set; }
-        public IActionResult OnGet()
+        [BindProperty] public Models.Booking SingleBooking { get; set; }
+        public IActionResult OnGet(int id)
         {
+            SingleBooking = _bookingService.GetBooking(id);
+            Message = "You are deleting the booking in " + SingleBooking.Room.Title +" at " + SingleBooking.Time +" by "+ SingleBooking.User.Name;
             return Page();
+
         }
         public async Task<IActionResult> OnPost(int id)
         {
@@ -42,12 +41,11 @@ namespace Zealandic_Booking.Pages.Booking
             }
 
             Models.Booking singleBooking = _bookingService.GetBooking(id);
-            User user = userService.GetUser(singleBooking.UserID);
-            singleBooking.User = user;
             if (singleBooking.User.Role == "student")
             {
                 _bookingService.DeleteBooking(id);
-                Message = "the booking at " + singleBooking.Time + " is deleted";
+                return RedirectToPage("GetBookings");
+
             }
             else
             {
