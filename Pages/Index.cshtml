@@ -20,156 +20,224 @@
         $("#PRID").change(function () {
             DT_Function();
         });
+        if ($("#00").hasClass("btn-danger")) {
+            $("#Ttime").text("This time is booked, please choose another time.");
+        }
+        if ($(document).width() < 1200) {
+            $("#firstCol").css({ "margin-left": "auto" });
+            $("#secondCol").css({ "margin-right": "auto" });
+        } else {
+            $("#firstCol").css({ "margin-left": "" });
+            $("#secondCol").css({ "margin-right": "" });
+        }
+        $('#TGroup1 .btn').on('click', function() {
+            var activeId = $(this).prop('id');
+            if (activeId == '00') {
+                $("#Ttime").text("00:00 - 02:00");
+            } else if (activeId == '02') {
+                $("#Ttime").text("02:00 - 04:00");
+            } else if (activeId == '04') {
+                $("#Ttime").text("04:00 - 06:00");
+            } else if (activeId == '06') {
+                $("#Ttime").text("06:00 - 08:00");
+            } else {
+                $("#Ttime").text("Unknown");
+            }
+            if ($("#" + activeId).hasClass("btn-danger")) {
+                $("#Ttime").text("This time is booked, please choose another");
+            }
+        });
+        $('#TGroup2 .btn').on('click', function () {
+            var activeId = $(this).prop('id');
+            if (activeId == '08') {
+                $("#Ttime").text("08:00 - 10:00");
+            } else if (activeId == '10') {
+                $("#Ttime").text("10:00 - 12:00");
+            } else if (activeId == '12') {
+                $("#Ttime").text("12:00 - 14:00");
+            } else if (activeId == '14') {
+                $("#Ttime").text("14:00 - 16:00");
+            } else {
+                $("#Ttime").text("Unknown");
+            }
+            if ($("#" + activeId).hasClass("btn-danger")) {
+                $("#Ttime").text("This time is booked, please choose another");
+            }
+        });
+
+        $('#TGroup3 .btn').on('click', function () {
+            var activeId = $(this).prop('id');
+            if (activeId == '16') {
+                $("#Ttime").text("16:00 - 18:00");
+            } else if (activeId == '18') {
+                $("#Ttime").text("18:00 - 20:00");
+            } else if (activeId == '20') {
+                $("#Ttime").text("20:00 - 22:00");
+            } else if (activeId == '22') {
+                $("#Ttime").text("22:00 - 00:00");
+            } else {
+                $("#Ttime").text("Unknown");
+            }
+            if ($("#"+activeId).hasClass("btn-danger")) {
+                $("#Ttime").text("This time is booked, please choose another");
+            }
+        });
     });
+
+    
+
 
     function GetBookings(Year, Month, Day, roomID) {
         $.ajax({
             url: 'BookingController',
             data: { "Year": Year, "Month": Month, "Day": Day, "roomID": roomID },
             success: function (data) {
-                $("#wow").text(data);
+                $("#Tdate").text(Day+"/"+Month+"/"+Year);
+                $("#Troom").text($("#PRID option:selected").text());
 
                 if (data && data.indexOf("x0x") !== -1) {
-                    if ($("#I00").hasClass("btn-dark")) {
+                    if ($("#00").hasClass("btn-dark")) {
                         $("#inlineRadio1").prop("disabled", true);
-                        $("#I00").removeClass("btn-dark").addClass("btn-danger");
+                        $("#00").prop("disabled", true);
+                        $("#00").removeClass("btn-dark").addClass("btn-danger");
                     }
                 } else {
-                    if ($("#I00").hasClass("btn-danger")) {
+                    if ($("#00").hasClass("btn-danger")) {
                         $("#inlineRadio1").prop("disabled", false);
-                        $("#I00").removeClass("btn-danger").addClass("btn-dark");
+                        $("#00").removeClass("btn-danger").addClass("btn-dark");
                     }
                 }
 
                 if (data && data.indexOf("x2x") !== -1) {
-                    if ($("#I02").hasClass("btn-dark")) {
+                    if ($("#02").hasClass("btn-dark")) {
                         $("#inlineRadio2").prop("disabled", true);
-                        $("#I02").removeClass("btn-dark").addClass("btn-danger");
+                        $("#02").prop("disabled", true);
+                        $("#02").removeClass("btn-dark").addClass("btn-danger");
                     }
                 } else {
-                    if ($("#I02").hasClass("btn-danger")) {
+                    if ($("#02").hasClass("btn-danger")) {
                         $("#inlineRadio2").prop("disabled", false);
-                        $("#I02").removeClass("btn-danger").addClass("btn-dark");
+                        $("#02").removeClass("btn-danger").addClass("btn-dark");
                     }
                 }
 
                 if (data && data.indexOf("x4x") !== -1) {
-                    if ($("#I04").hasClass("btn-dark")) {
+                    if ($("#04").hasClass("btn-dark")) {
                         $("#inlineRadio3").prop("disabled", true);
-                        $("#I04").removeClass("btn-dark").addClass("btn-danger");
+                        $("#04").removeClass("btn-dark").addClass("btn-danger");
                     }
                 } else {
-                    if ($("#I04").hasClass("btn-danger")) {
+                    if ($("#04").hasClass("btn-danger")) {
                         $("#inlineRadio3").prop("disabled", false);
-                        $("#I04").removeClass("btn-danger").addClass("btn-dark");
+                        $("#04").removeClass("btn-danger").addClass("btn-dark");
                     }
                 }
 
                 if (data && data.indexOf("x6x") !== -1) {
-                    if ($("#I06").hasClass("btn-dark")) {
+                    if ($("#06").hasClass("btn-dark")) {
                         $("#inlineRadio4").prop("disabled", true);
-                        $("#I06").removeClass("btn-dark").addClass("btn-danger");
+                        $("#06").removeClass("btn-dark").addClass("btn-danger");
                     }
                 } else {
-                    if ($("#I06").hasClass("btn-danger")) {
+                    if ($("#06").hasClass("btn-danger")) {
                         $("#inlineRadio4").prop("disabled", false);
-                        $("#I06").removeClass("btn-danger").addClass("btn-dark");
+                        $("#06").removeClass("btn-danger").addClass("btn-dark");
                     }
                 }
 
                 if (data && data.indexOf("x8x") !== -1) {
-                    if ($("#I08").hasClass("btn-dark")) {
+                    if ($("#08").hasClass("btn-dark")) {
                         $("#inlineRadio5").prop("disabled", true);
-                        $("#I08").removeClass("btn-dark").addClass("btn-danger");
+                        $("#08").removeClass("btn-dark").addClass("btn-danger");
                     }
                 } else {
-                    if ($("#I08").hasClass("btn-danger")) {
+                    if ($("#08").hasClass("btn-danger")) {
                         $("#inlineRadio5").prop("disabled", false);
-                        $("#I08").removeClass("btn-danger").addClass("btn-dark");
+                        $("#08").removeClass("btn-danger").addClass("btn-dark");
                     }
                 }
 
                 if (data && data.indexOf("x10x") !== -1) {
-                    if ($("#I10").hasClass("btn-dark")) {
+                    if ($("#10").hasClass("btn-dark")) {
                         $("#inlineRadio6").prop("disabled", true);
-                        $("#I10").removeClass("btn-dark").addClass("btn-danger");
+                        $("#10").removeClass("btn-dark").addClass("btn-danger");
                     }
                 } else {
-                    if ($("#I10").hasClass("btn-danger")) {
+                    if ($("#10").hasClass("btn-danger")) {
                         $("#inlineRadio6").prop("disabled", false);
-                        $("#I10").removeClass("btn-danger").addClass("btn-dark");
+                        $("#10").removeClass("btn-danger").addClass("btn-dark");
                     }
                 }
 
                 if (data && data.indexOf("x12x") !== -1) {
-                    if ($("#I12").hasClass("btn-dark")) {
+                    if ($("#12").hasClass("btn-dark")) {
                         $("#inlineRadio7").prop("disabled", true);
-                        $("#I12").removeClass("btn-dark").addClass("btn-danger");
+                        $("#12").removeClass("btn-dark").addClass("btn-danger");
                     }
                 } else {
-                    if ($("#I12").hasClass("btn-danger")) {
+                    if ($("#12").hasClass("btn-danger")) {
                         $("#inlineRadio7").prop("disabled", false);
-                        $("#I12").removeClass("btn-danger").addClass("btn-dark");
+                        $("#12").removeClass("btn-danger").addClass("btn-dark");
                     }
                 }
 
                 if (data && data.indexOf("x14x") !== -1) {
-                    if ($("#I14").hasClass("btn-dark")) {
+                    if ($("#14").hasClass("btn-dark")) {
                         $("#inlineRadio8").prop("disabled", true);
-                        $("#I14").removeClass("btn-dark").addClass("btn-danger");
+                        $("#14").removeClass("btn-dark").addClass("btn-danger");
                     }
                 } else {
-                    if ($("#I14").hasClass("btn-danger")) {
+                    if ($("#14").hasClass("btn-danger")) {
                         $("#inlineRadio8").prop("disabled", false);
-                        $("#I14").removeClass("btn-danger").addClass("btn-dark");
+                        $("#14").removeClass("btn-danger").addClass("btn-dark");
                     }
                 }
 
                 if (data && data.indexOf("x16x") !== -1) {
-                    if ($("#I16").hasClass("btn-dark")) {
+                    if ($("#16").hasClass("btn-dark")) {
                         $("#inlineRadio9").prop("disabled", true);
-                        $("#I16").removeClass("btn-dark").addClass("btn-danger");
+                        $("#16").removeClass("btn-dark").addClass("btn-danger");
                     }
                 } else {
-                    if ($("#I16").hasClass("btn-danger")) {
+                    if ($("#16").hasClass("btn-danger")) {
                         $("#inlineRadio9").prop("disabled", false);
-                        $("#I16").removeClass("btn-danger").addClass("btn-dark");
+                        $("#16").removeClass("btn-danger").addClass("btn-dark");
                     }
                 }
 
                 if (data && data.indexOf("x18x") !== -1) {
-                    if ($("#I18").hasClass("btn-dark")) {
+                    if ($("#18").hasClass("btn-dark")) {
                         $("#inlineRadio10").prop("disabled", true);
-                        $("#I18").removeClass("btn-dark").addClass("btn-danger");
+                        $("#18").removeClass("btn-dark").addClass("btn-danger");
                     }
                 } else {
-                    if ($("#I18").hasClass("btn-danger")) {
+                    if ($("#18").hasClass("btn-danger")) {
                         $("#inlineRadio10").prop("disabled", false);
-                        $("#I18").removeClass("btn-danger").addClass("btn-dark");
+                        $("#18").removeClass("btn-danger").addClass("btn-dark");
                     }
                 }
 
                 if (data && data.indexOf("x20x") !== -1) {
-                    if ($("#I20").hasClass("btn-dark")) {
+                    if ($("#20").hasClass("btn-dark")) {
                         $("#inlineRadio11").prop("disabled", true);
-                        $("#I20").removeClass("btn-dark").addClass("btn-danger");
+                        $("#20").removeClass("btn-dark").addClass("btn-danger");
                     }
                 } else {
-                    if ($("#I20").hasClass("btn-danger")) {
+                    if ($("#20").hasClass("btn-danger")) {
                         $("#inlineRadio11").prop("disabled", false);
-                        $("#I20").removeClass("btn-danger").addClass("btn-dark");
+                        $("#20").removeClass("btn-danger").addClass("btn-dark");
                     }
                 }
 
                 if (data && data.indexOf("x22x") !== -1) {
-                    if ($("#I22").hasClass("btn-dark")) {
+                    if ($("#22").hasClass("btn-dark")) {
                         $("#inlineRadio12").prop("disabled", true);
-                        $("#I22").removeClass("btn-dark").addClass("btn-danger");
+                        $("#22").removeClass("btn-dark").addClass("btn-danger");
                     }
                 } else {
-                    if ($("#I22").hasClass("btn-danger")) {
+                    if ($("#22").hasClass("btn-danger")) {
                         $("#inlineRadio12").prop("disabled", false);
-                        $("#I22").removeClass("btn-danger").addClass("btn-dark");
+                        $("#22").removeClass("btn-danger").addClass("btn-dark");
                     }
                 }
 
@@ -199,9 +267,11 @@
         
         if (Month > 12) {
             $("#DT_Month").val(12);
+            DT_Function();
         }
         else if (Day > 31) {
             $("#DT_Day").val(31);
+            DT_Function();
         }
         GetBookings(Year, Month, Day, PostRoomID);
 
@@ -213,7 +283,7 @@
 {
     <p id="wow">hej med dig</p>
     <form method="post">
-        <div class="row" id="RowWidth">
+        <div class="row">
             <div style="width: 407px; margin-right:auto;" id="firstCol" class="mb-5">
                 <div class="">
                     <select class="form-control btn-dark" name="postRoomID" id="PRID" aria-label="Room Select Form">
@@ -250,58 +320,58 @@
 
                 <div class="btn-group mt-2 text-center" data-toggle="buttons">
                     <fieldset>
-                        <div>
-                            <label class="btn btn-dark" id="I00" style="font-size: 10px" for="inlineRadio1">
+                        <div id ="TGroup1">
+                            <label class="btn btn-dark" id="00" style="font-size: 10px" for="inlineRadio1">
                                 <input type="radio" id="inlineRadio1" name="time" value="00.00.00" checked> 00:00 - 02:00
                             </label>
 
-                            <label class="btn btn-dark" id="I02" style="font-size: 10px" for="inlineRadio2">
+                            <label class="btn btn-dark" id="02" style="font-size: 10px" for="inlineRadio2">
                                 <input type="radio" id="inlineRadio2" name="time" value="02.00.00"> 02:00 - 04:00
                             </label>
 
-                            <label class="btn btn-dark" id="I04" style="font-size: 10px" for="inlineRadio3">
+                            <label class="btn btn-dark" id="04" style="font-size: 10px" for="inlineRadio3">
                                 <input type="radio" id="inlineRadio3" name="time" value="04.00.00"> 04:00 - 06:00
                             </label>
 
-                            <label class="btn btn-dark" id="I06" style="font-size: 10px" for="inlineRadio4">
+                            <label class="btn btn-dark" id="06" style="font-size: 10px" for="inlineRadio4">
                                 <input type="radio" id="inlineRadio4" name="time" value="06.00.00"> 06:00 - 08:00
                             </label>
                         </div>
 
-                        <div>
-                            <label class="btn btn-dark" id="I08" style="font-size: 10px" for="inlineRadio5">
+                        <div id ="TGroup2">
+                            <label class="btn btn-dark" id="08" style="font-size: 10px" for="inlineRadio5">
                                 <input type="radio" id="inlineRadio5" name="time" value="08.00.00"> 08:00 - 10:00
                             </label>
 
-                            <label class="btn btn-dark" id="I10" style="font-size: 10px" for="inlineRadio6">
+                            <label class="btn btn-dark" id="10" style="font-size: 10px" for="inlineRadio6">
                                 <input type="radio" id="inlineRadio6" name="time" value="10.00.00"> 10:00 - 12:00
                             </label>
 
-                            <label class="btn btn-dark" id="I12" style="font-size: 10px" for="inlineRadio7">
+                            <label class="btn btn-dark" id="12" style="font-size: 10px" for="inlineRadio7">
                                 <input type="radio" id="inlineRadio7" name="time" value="12.00.00"> 12:00 - 14:00
                             </label>
 
-                            <label class="btn btn-dark" id="I14" style="font-size: 10px" for="inlineRadio8">
+                            <label class="btn btn-dark" id="14" style="font-size: 10px" for="inlineRadio8">
                                 <input type="radio" id="inlineRadio8" name="time" value="14.00.00"> 14:00 - 16:00
                             </label>
                         </div>
 
-                        <div>
-                            <label class="btn btn-dark" id="I16" style="font-size: 10px" for="inlineRadio9">
+                        <div id ="TGroup3">
+                            <label class="btn btn-dark" id="16" style="font-size: 10px" for="inlineRadio9">
                                 <input type="radio" id="inlineRadio9" name="time" value="16.00.00"> 16:00 - 18:00
                             </label>
 
 
-                            <label class="btn btn-dark" id="I18" style="font-size: 10px" for="inlineRadio10">
+                            <label class="btn btn-dark" id="18" style="font-size: 10px" for="inlineRadio10">
                                 <input type="radio" id="inlineRadio10" name="time" value="18.00.00"> 18:00 - 20:00
                             </label>
 
-                            <label class="btn btn-dark" id="I20" style="font-size: 10px" for="inlineRadio11">
+                            <label class="btn btn-dark" id="20" style="font-size: 10px" for="inlineRadio11">
                                 <input type="radio" id="inlineRadio11" name="time" value="20.00.00"> 20:00 - 22:00
                             </label>
 
 
-                            <label class="btn btn-dark" id="I22" style="font-size: 10px" for="inlineRadio12">
+                            <label class="btn btn-dark" id="22" style="font-size: 10px" for="inlineRadio12">
                                 <input type="radio" id="inlineRadio12" name="time" value="22.00.00"> 22:00 - 00:00
                             </label>
                         </div>
@@ -309,6 +379,30 @@
                 </div>
                 <div class="text-center">
                     <input class="btn btn-dark text-center" id="submit" type="submit">
+                </div>
+                <div class="container shadow-sm mt-3">
+                    <table class="table table-striped shadow">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="auto">Args</th>
+                            <th>description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="pb-5">
+                                <td p style="white-space: pre-line">Date</td>
+                                <td p style="white-space: pre-line" id="Tdate"></td>
+                            </tr>
+                            <tr class="pb-5">
+                                <td p style="white-space: pre-line">Time</td>
+                                <td p style="white-space: pre-line" id="Ttime">Please select a time interval</td>
+                            </tr>
+                            <tr class="pb-5">
+                                <td p style="white-space: pre-line">Room</td>
+                                <td p style="white-space: pre-line" id="Troom"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div style="margin-left: auto;" id="secondCol">
