@@ -11,7 +11,7 @@ using Zealandic_Booking.Services;
 
 namespace Zealandic_Booking.Pages.Booking
 {
-    [Authorize(Roles = "teacher,admin")]
+    [Authorize(Roles = "teacher,admin,student")]
     public class DeleteBookingModel : PageModel
     {
         private BookingService _bookingService;
@@ -44,7 +44,7 @@ namespace Zealandic_Booking.Pages.Booking
             if (singleBooking.User.Role == "student")
             {
                 _bookingService.DeleteBooking(id);
-                return RedirectToPage("GetBookings");
+                return RedirectToPage("../index");
 
             }
             else if(singleBooking.User.Role != "student" || singleBooking.User.Role != "teacher" || singleBooking.User.Role != "admin")
