@@ -180,11 +180,23 @@
         });
     }
 
+    $(window).resize(function() {
+        if ($(document).width() < 1200) {
+            $("#firstCol").css({ "margin-left": "auto" });
+            $("#secondCol").css({ "margin-right": "auto" });
+        } else {
+            $("#firstCol").css({ "margin-left": "" });
+            $("#secondCol").css({ "margin-right": "" });
+        }
+
+    });
+
     function DT_Function() {
         var Year = $("#DT_Year").val();
         var Month = $("#DT_Month").val();
         var Day = $("#DT_Day").val();
         var PostRoomID = $("#PRID").val();
+        
         if (Month > 12) {
             $("#DT_Month").val(12);
         }
@@ -201,8 +213,8 @@
 {
     <p id="wow">hej med dig</p>
     <form method="post">
-        <div class="row">
-            <div class="col-sm" style="width: 440px">
+        <div class="row" id="RowWidth">
+            <div style="width: 407px; margin-right:auto;" id="firstCol" class="mb-5">
                 <div class="">
                     <select class="form-control btn-dark" name="postRoomID" id="PRID" aria-label="Room Select Form">
                         @foreach (var room in Model.Rooms)
@@ -299,7 +311,7 @@
                     <input class="btn btn-dark text-center" id="submit" type="submit">
                 </div>
             </div>
-            <div class="col-sm">
+            <div style="margin-left: auto;" id="secondCol">
                 <table class="table table-bordered table-hover table-striped" width="60%">
                     <col style="width: 5%">
                     <col style="width: 77%">
