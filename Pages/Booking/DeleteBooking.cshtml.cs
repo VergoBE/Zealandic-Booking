@@ -42,8 +42,6 @@ namespace Zealandic_Booking.Pages.Booking
             }
 
             Models.Booking singleBooking = _bookingService.GetBooking(id);
-            User user = userService.GetUser(singleBooking.UserID);
-            singleBooking.User = user;
             if (singleBooking.User.Role == "student")
             {
                 _bookingService.DeleteBooking(id);
