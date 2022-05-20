@@ -23,7 +23,6 @@ namespace Zealandic_Booking.Pages
         public List<Models.Booking> MyBookings { get; private set; }
         public List<Models.User> Users { get; private set; }
         public List<Models.Room> Rooms { get; private set; }
-        public List<DateTime> allDateTimes { get; private set; }
         public bool LoginCheck { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger, BookingService bookingService, RoomService roomService, UserService userService)
@@ -51,10 +50,12 @@ namespace Zealandic_Booking.Pages
                 MyBookings = Bookings.Where(a => a.UserID == Int32.Parse(currentUserID)).ToList();
                 Users = userService.GetUsers().ToList();
                 Rooms = roomService.GetRooms().ToList();
-                allDateTimes = new List<DateTime>(Bookings.Count);
-                foreach (Models.Booking item in Bookings)
+                foreach (var item in Bookings)
                 {
-                    allDateTimes.Add(item.Time);
+                    if (item.Time < currentDT)
+                    {
+                        bookingService.DeleteBooking(item.BookingID);
+                    }   
                 }
             }
             catch (Exception e)

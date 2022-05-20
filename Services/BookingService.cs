@@ -46,7 +46,7 @@ namespace Zealandic_Booking.Services
             return bookings;
         }
 
-        public Booking GetBooking(int id)
+        public Booking GetBooking(int? id)
         {
 
             //foreach (Booking booking in bookings)
@@ -58,7 +58,7 @@ namespace Zealandic_Booking.Services
             //return null;
         }
         
-        public Booking DeleteBooking(int bookingId)
+        public Booking DeleteBooking(int? bookingId)
         {
             //Booking bookingToBeDeleted = null;
             Booking bookingToBeDeleted = GetBooking(bookingId);
