@@ -41,7 +41,7 @@ namespace Zealandic_Booking.Pages.Booking
             }
 
             Models.Booking singleBooking = _bookingService.GetBooking(id);
-            if (singleBooking.User.Role == "student")
+            if (singleBooking.User.Role == "student" || singleBooking.User.Role == "teacher" || singleBooking.User.Role == "admin")
             {
                 _bookingService.DeleteBooking(id);
                 return RedirectToPage("../index");
@@ -49,7 +49,7 @@ namespace Zealandic_Booking.Pages.Booking
             }
             else if(singleBooking.User.Role != "student" || singleBooking.User.Role != "teacher" || singleBooking.User.Role != "admin")
             {
-                return RedirectToPage(".../Admin/AccessDenied");
+                return RedirectToPage("../Admin/AccessDenied");
             }
            
                     //MailMessage eMailMessage = new MailMessage();
