@@ -44,14 +44,6 @@ namespace Zealandic_Booking.Pages.WorkInProgress
                 {
                     bufferSTR = bufferSTR + "x" + item.Time.Hour.ToString() + "x";
                 }
-                //DateTime currentDT = DateTime.Now;
-                //CultureInfo cultureInfoCreate = CultureInfo.CreateSpecificCulture("en-DK");
-                //string buffer = Year.ToString() + "/" + Month.ToString() + "/" + Day.ToString() + " 00.00.00";
-                //DateTime itemDatetime = DateTime.Parse(buffer);
-                //if (currentDT.Date <= itemDatetime.Date)
-                //{
-                //    bufferSTR = bufferSTR + "y" + item.Time.Hour.ToString() + "y";
-                //}
             }
             return new JsonResult(bufferSTR);
         }

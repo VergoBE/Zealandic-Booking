@@ -31,7 +31,7 @@ namespace Zealandic_Booking.Services
             List<Room> roomSearch = new List<Room>();
             foreach (Room room in rooms)
             {
-                if (room.RoomID.ToString() == id)
+                if (room.Title.Contains(id))
                 {
                     roomSearch.Add(room);
                 }

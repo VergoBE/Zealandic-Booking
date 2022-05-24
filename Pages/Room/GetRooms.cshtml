@@ -5,12 +5,12 @@
 <h1>Her er alle rummene</h1>
 <br />
 <div class="row">
-    <div class="col-4"><h5>Søg efter værelse efter navn</h5></div>
+    <div class="col-4"><h5>Søg efter værelse efter title</h5></div>
 </div>
 <div class="row">
     <div class="col-4">
         <form method="post"class="form-inline">
-            <input asp-for="@Model.ID" class="form.control mr-1" placeholder="Skriv rum navn her!" />
+            <input asp-for="@Model.ID" class="form.control mr-1" placeholder="Skriv rum title her!" />
             <input type="submit" asp-page-handler="RoomSearch" value="Search" class="btn btn-primary" />
         </form>
     </div>

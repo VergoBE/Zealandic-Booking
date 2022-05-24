@@ -30,6 +30,7 @@
             $("#firstCol").css({ "margin-left": "" });
             $("#secondCol").css({ "margin-right": "" });
         }
+
         $('#TGroup1 .btn').on('click', function () {
             var activeId = $(this).prop('id');
             if (activeId == '00') {
@@ -92,10 +93,10 @@
             url: 'BookingController',
             data: { "Year": Year, "Month": Month, "Day": Day, "roomID": roomID },
             success: function (data) {
-                $("#wow").text(data);
+
                 $("#Tdate").text(Day + "/" + Month + "/" + Year);
                 $("#Troom").text($("#PRID option:selected").text());
-
+                The 
                 if (data && data.indexOf("x0x") !== -1) {
                     if ($("#00").hasClass("btn-dark")) {
                         $("#inlineRadio1").prop("disabled", true);
@@ -276,6 +277,7 @@
         }
         GetBookings(Year, Month, Day, PostRoomID);
     }
+
 </script>
 
 @if (Model.LoginCheck == true)
