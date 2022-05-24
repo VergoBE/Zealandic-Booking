@@ -92,7 +92,7 @@ namespace Zealandic_Booking.Pages
 
             CultureInfo cultureInfoCreate = CultureInfo.CreateSpecificCulture("en-DK");
             buffer = year.ToString() + "/" + month.ToString() + "/" + day.ToString() + " " + time;
-            datetime = DateTime.Parse(buffer);
+            datetime = DateTime.Parse(buffer,cultureInfoCreate);
             booking = new Models.Booking(null, datetime, postRoomID, Int32.Parse(currentUserID));
             var id = Bookings.Select(b => b.UserID);
             foreach (Models.Booking item in Bookings)
