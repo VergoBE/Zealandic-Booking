@@ -20,9 +20,9 @@ namespace Zealandic_Booking.Models
         [Required]
         public bool IT_Tools { get; set; }
         [ForeignKey("Building")]
-        public int? BuildingID { get; set; }
+        public int BuildingID { get; set; }
         [ForeignKey("Location")]
-        public int? LocationID { get; set; }
+        public int LocationID { get; set; }
         public Building Building { get; set; }
         public Location Location { get; set; }
 

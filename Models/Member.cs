@@ -11,15 +11,15 @@ namespace Zealandic_Booking.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int? MemberID { get; set; }
+        public int MemberID { get; set; }
         [ForeignKey("Booking")]
-        public int? BookingID { get; set; }
+        public int BookingID { get; set; }
         [ForeignKey("User")]
-        public int? UserID { get; set; }
+        public int UserID { get; set; }
         public User User { get; set; }
         public Booking Booking{ get; set; }
 
-        public Member(int? memberId, int? bookingId, int? userId)
+        public Member(int memberId, int bookingId, int userId)
         {
             MemberID = memberId;
             BookingID = bookingId;

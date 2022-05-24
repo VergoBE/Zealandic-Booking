@@ -22,9 +22,9 @@ namespace Zealandic_Booking.Models
         //public JsonArrayAttribute GroupMembers { get; set; }
 
         [ForeignKey("Room")] 
-        public int? RoomID { get; set; }
+        public int RoomID { get; set; }
         [ForeignKey("User")] 
-        public int? UserID { get; set; }
+        public int UserID { get; set; }
         public Room Room { get; set; }
         public User User { get; set; }
         private UserService UserService { get; set; }
