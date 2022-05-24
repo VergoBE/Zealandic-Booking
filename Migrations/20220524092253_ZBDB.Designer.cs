@@ -10,7 +10,7 @@ using Zealandic_Booking.Models;
 namespace Zealandic_Booking.Migrations
 {
     [DbContext(typeof(ZBDBContext))]
-    [Migration("20220517113432_ZBDB")]
+    [Migration("20220524092253_ZBDB")]
     partial class ZBDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

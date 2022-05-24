@@ -2,65 +2,60 @@
 @model Zealandic_Booking.Pages.Booking.GetBookingsModel
 @{
 }
+<p class="text-danger">Bemærk: Du kan ikke slette bookinger, der er mindre end tre dage til, hvis du vil slette dine egne, skal du gå til hovedsidene</p>
 <table class="table table-bordered table-hover table-striped" width="60%">
-    <col style="width: 5%">
     <col style="width: 77%">
     <col style="width: 9%">
     <col style="width: 9%">
     <thead>
-        <tr>
-            <th>
-                BookingID
-            </th>
-            <th>
-                BookingTime
-            </th>
-            <th>
-                Booked by
-            </th>
-            <th>
-                Room name
-            </th>
-            <th>
-                Options
-            </th>
-        </tr>
+    <tr>
+        <th>
+            Start tid
+        </th>
+        <th>
+            Booket af
+        </th>
+        <th>
+            Rum
+        </th>
+        <th>
+            Valg
+        </th>
+    </tr>
     </thead>
     <tbody>
     @if (Model.Bookings != null)
     {
         foreach (var booking in Model.Bookings)
         {
-        <tr>
-            <td>
-                @booking.BookingID
-            </td>
-            <td>
-                @booking.Time
-            </td>
-            <td>
-                @booking.User.Name
-            </td>
-            <td>
-                @booking.Room.Name
-            </td>
-            <td>
+            <tr>
+                <td>
+                    @booking.Time
+                </td>
+                <td>
+                    @booking.User.Name
+                </td>
+                <td>
+                    @booking.Room.Name || @booking.Room.Title
+                </td>
+                <td>
 
-                <ul class="list-inline m-0">
-                    @{
-                        if (booking.Time.CompareTo(DateTime.Today.AddDays(3)) >= 1 && booking.User.Role == "student")
-                        {
-
-                            <li class="list-inline-item">
-                                <a class="btn btn-danger btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="Delete" asp-page="DeleteBooking" asp-route-id="@booking.BookingID">Delete<i class="fa fa-trash"></i></a>
-                            </li>
-
-
+                    <ul class="list-inline m-0">
+                        @{
+                            if (booking.Time.CompareTo(DateTime.Today.AddDays(3)) >= 0)
+                            {
+                                <li class="list-inline-item">
+                                    <a class="btn btn-danger btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="Delete" asp-page="DeleteBooking" asp-route-id="@booking.BookingID">Slet<i class="fa fa-trash"></i></a>
+                                </li>
+                            }
+                            else
+                            {
+                                <p>Kan ikke slettes</p>
+                            }
                         }
-                    }
-                </ul>
-            </td>
-        </tr>
+                    </ul>
+                </td>
+            </tr>
         }
     }
     </tbody>

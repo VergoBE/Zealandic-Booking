@@ -29,7 +29,7 @@ namespace Zealandic_Booking.Pages.Booking
         public IActionResult OnGet(int id)
         {
             SingleBooking = _bookingService.GetBooking(id);
-            Message = "You are deleting the booking in " + SingleBooking.Room.Title +" at " + SingleBooking.Time +" by "+ SingleBooking.User.Name;
+            Message = "Du sletter bookingen i " + SingleBooking.Room.Title +" ved " + SingleBooking.Time +" af "+ SingleBooking.User.Name;
             return Page();
 
         }

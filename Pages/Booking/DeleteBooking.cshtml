@@ -2,12 +2,12 @@
 @model Zealandic_Booking.Pages.Booking.DeleteBookingModel
 @{
 }
-<h1>Confirm you want to delete the booking</h1>
+<h1>Bekræft, at du ønsker at slette reservationen</h1>
 <div class="alert alert-danger">
     <form method="post">
-        <button type="submit" class="btn btn-danger">Yes, Delete Booking</button>
+        <button type="submit" class="btn btn-danger">Ja, slet reservation</button>
         <p>@Model.Message</p>
-        <a href="mailto:123@edu.zealand.dk">Send email to notify @Model.SingleBooking.User.Name of his cancelled booking</a>
-        <a class="btn btn-primary" asp-page="/Booking/GetBookings">No, Do not delete</a>
+        <a href="mailto:123@edu.zealand.dk">Send e-mail for at give besked til @Model.SingleBooking.User.Name af hans aflyste reservation</a>
+        <a class="btn btn-primary" asp-page="/Booking/GetBookings">Nej, slet ikke</a>
     </form>
 </div>

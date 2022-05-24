@@ -280,10 +280,10 @@
 
 @if (Model.LoginCheck == true)
 {
-    <p id="wow">hej med dig</p>
     <form method="post">
         <div class="row">
-            <div style="width: 408px; margin-right:auto;" id="firstCol" class="mb-5">
+            <div style="width: 408px; margin-right: auto;" id="firstCol" class="mb-5">
+                <h3>Book et rum</h3>
                 <div class="">
                     <b class="font-weight-bold text-center">Vælg rum</b>
                     <select class="form-control btn-dark" name="postRoomID" id="PRID" aria-label="Room Select Form">
@@ -293,7 +293,7 @@
                         }
                     </select>
                 </div>
-                <div class="">
+                @*<div class="">
                     <b class="font-weight-bold text-center">Vælg Gruppemedlemmer</b>
                     <select class="form-control btn-dark" name="postUserID" id="PRID" aria-label="Room Select Form">
                         @foreach (var user in Model.Users)
@@ -301,7 +301,7 @@
                             <option value="@user.UserID">Navn: @user.Name | Rolle: @user.Role</option>
                         }
                     </select>
-                </div>
+                </div>*@
 
                 @*<div class="mt-2">
                         <select class="form-control btn-dark" name="postUserID" aria-label="User Select Form">
@@ -314,15 +314,15 @@
                 <b class="font-weight-bold text-center">Vælg Dato</b>
                 <div class="input-group mt-2">
                     <div class="input-group-prepend">
-                        <span class="input-group-text text-dark" id="basic-addon1">Year</span>
+                        <span class="input-group-text text-dark" id="basic-addon1">År</span>
                     </div>
                     <input maxlength="4" type="text" id="DT_Year" class="form-control btn-dark DT_Year" name="year" value="@Model.currentYear" aria-label="Year" aria-describedby="basic-addon1">
                     <div class="input-group-prepend ml-2">
-                        <span class="input-group-text text-dark" id="basic-addon2">Month</span>
+                        <span class="input-group-text text-dark" id="basic-addon2">Måned</span>
                     </div>
                     <input maxlength="2" type="text" id="DT_Month" class="form-control btn-dark" name="month" value="@Model.currentMonth" aria-label="Month" aria-describedby="basic-addon2">
                     <div class="input-group-prepend ml-2">
-                        <span class="input-group-text text-dark" id="basic-addon3">Day</span>
+                        <span class="input-group-text text-dark" id="basic-addon3">Dag</span>
                     </div>
                     <input maxlength="2" type="text" id="DT_Day" class="form-control btn-dark" name="day" value="@Model.currentDay" aria-label="Day" aria-describedby="basic-addon3">
                 </div>
@@ -393,82 +393,71 @@
                 <div class="container shadow-sm mt-3">
                     <table class="table table-striped shadow">
                         <thead class="thead-light">
-                            <tr>
-                                <th scope="auto">Args</th>
-                                <th>description</th>
-                            </tr>
+                        <tr>
+                            <th scope="auto">Args</th>
+                            <th>description</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr class="pb-5">
-                                <td p style="white-space: pre-line">Date</td>
-                                <td p style="white-space: pre-line" id="Tdate"></td>
-                            </tr>
-                            <tr class="pb-5">
-                                <td p style="white-space: pre-line">Time</td>
-                                <td p style="white-space: pre-line" id="Ttime">Please select a time interval</td>
-                            </tr>
-                            <tr class="pb-5">
-                                <td p style="white-space: pre-line">Room</td>
-                                <td p style="white-space: pre-line" id="Troom"></td>
-                            </tr>
+                        <tr class="pb-5">
+                            <td p style="white-space: pre-line">Dato</td>
+                            <td p style="white-space: pre-line" id="Tdate"></td>
+                        </tr>
+                        <tr class="pb-5">
+                            <td p style="white-space: pre-line">Tid</td>
+                            <td p style="white-space: pre-line" id="Ttime">Vælg et tidsinterval</td>
+                        </tr>
+                        <tr class="pb-5">
+                            <td p style="white-space: pre-line">Rum</td>
+                            <td p style="white-space: pre-line" id="Troom"></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+            
             <div style="margin-left: auto;" id="secondCol">
+                <h3>Dine Bookinger</h3>
                 <table class="table table-bordered table-hover table-striped" width="60%">
-                    <col style="width: 5%">
-                    <col style="width: 77%">
-                    <col style="width: 9%">
-                    <col style="width: 9%">
+                    <col style="width: 30%">
+                    <col style="width: 50%">
+                    <col style="width: 20%">
                     <thead>
-                        <tr>
-                            <th>
-                                BookingID
-                            </th>
-                            <th>
-                                BookingTime
-                            </th>
-                            <th>
-                                Booked by
-                            </th>
-                            <th>
-                                Room name
-                            </th>
-                            <th>
-                                Options
-                            </th>
-                        </tr>
+                    <tr>
+                        <th>
+                            Start tid
+                        </th>
+                        <th>
+                            Rum
+                        </th>
+                        <th>
+                            Valg
+                        </th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @if (Model.MyBookings != null)
+                    @if (Model.MyBookings != null)
+                    {
+                        foreach (var booking in Model.MyBookings)
                         {
-                            foreach (var booking in Model.MyBookings)
-                            {
-                                <tr>
-                                    <td>
-                                        @booking.BookingID
-                                    </td>
-                                    <td>
-                                        @booking.Time
-                                    </td>
-                                    <td>
-                                        @booking.User.Name
-                                    </td>
-                                    <td>
-                                        @booking.Room.Name
-                                    </td>
-                                    <td>
+                            <tr>
+                                <td>
+                                    @booking.Time
+                                </td>
+                                <td>
+                                    @booking.Room.Name || @booking.Room.Title
+                                </td>
+                                <td>
 
-                                        <ul class="list-inline m-0">
-                                            <li class="list-inline-item">
-                                                <a class="btn btn-danger btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="Delete" asp-page="/Booking/DeleteBooking" asp-route-id="@booking.BookingID">Delete<i class="fa fa-trash"></i></a>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            }
+                                    <ul class="list-inline m-0">
+                                        <li class="list-inline-item">
+                                            <a class="btn btn-danger btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="Delete" asp-page="/Booking/DeleteBooking" asp-route-id="@booking.BookingID">Delete<i class="fa fa-trash"></i></a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
                         }
+                    }
                     </tbody>
                 </table>
             </div>

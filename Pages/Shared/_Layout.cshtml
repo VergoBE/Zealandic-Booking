@@ -15,7 +15,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Zealandic_Booking</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Zealandic Booking</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,11 +23,12 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Book et rum</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Room/GetRooms">All Rooms</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Room/GetRooms">Alle rum</a>
                         </li>
+
                         @{
                             if (Context.User.Identity.IsAuthenticated)
                             {
@@ -35,7 +36,7 @@
                                 if (User.IsInRole("teacher") || User.IsInRole("admin"))
                                 {
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-page="/Booking/GetBookings">View all bookings</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-page="/Booking/GetBookings">Se alle bookinger</a>
                                     </li>
                                 }
                             }
@@ -46,7 +47,7 @@
                             if (User.IsInRole("admin"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-page="/Admin/CreateUser">Create User</a>
+                                    <a class="nav-link" asp-area="" asp-page="/Admin/CreateUser">Opret bruger</a>
                                 </li>
                             }
                         }
@@ -56,7 +57,7 @@
                             if (Context.User.Identity.Name==null)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-page="/LogIn/LogIn">Login</a>
+                                    <a class="nav-link" asp-area="" asp-page="/LogIn/LogIn">Log ind</a>
                                 </li>
                             }
                             else
@@ -64,11 +65,11 @@
                                 if (Context.User.Identity.Name != null)
                                 {
                                     <li class="nav-item nav-link mr-3">
-                                        User:  @Context.User.Identity.Name
+                                        Bruger:  @Context.User.Identity.Name
                                     </li>
                                 }
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-page="/LogIn/LogOut">Logout</a>
+                                    <a class="nav-link" asp-area="" asp-page="/LogIn/LogOut">Log out</a>
                                 </li>
                             } 
                         }
@@ -83,17 +84,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            <script>
-                var $oNotice = new NoticeHandler();
-                $oNotice.showNotice(danger, test, 5000);
-            </script>
-            &copy; 2022 - Zealandic_Booking - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 

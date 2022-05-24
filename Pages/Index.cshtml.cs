@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Zealandic_Booking.Models;
 using Zealandic_Booking.Services;
 
 namespace Zealandic_Booking.Pages
@@ -21,10 +23,9 @@ namespace Zealandic_Booking.Pages
         public int currentDay { get; set; }
         public List<Models.Booking> Bookings { get; private set; }
         public List<Models.Booking> MyBookings { get; private set; }
-        public List<Models.User> Users { get; private set; }
+        public List<User> Users { get; private set; }
         public List<Models.Room> Rooms { get; private set; }
         public bool LoginCheck { get; set; }
-
         public IndexModel(ILogger<IndexModel> logger, BookingService bookingService, RoomService roomService, UserService userService)
         {
             _logger = logger;
@@ -61,6 +62,7 @@ namespace Zealandic_Booking.Pages
             catch (Exception e)
             {
                 LoginCheck = false;
+                return RedirectToPage("/LogIn/LogIn");
             }
             
             
