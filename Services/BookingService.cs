@@ -91,5 +91,17 @@ namespace Zealandic_Booking.Services
                 await DbService.UpdateObjectAsync(booking);
             }
         }
+
+        public void DeleteOldBooking()
+        {
+            DateTime currentDT = DateTime.Now;
+            foreach (var item in bookings.ToList())
+            {
+                if (item.Time < currentDT)
+                {
+                    DeleteBooking(item.BookingID);
+                }
+            }
+        }
     }
 }

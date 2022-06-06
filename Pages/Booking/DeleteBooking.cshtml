@@ -1,4 +1,5 @@
 ﻿@page       "{id:int}"
+@using System.Timers
 @model Zealandic_Booking.Pages.Booking.DeleteBookingModel
 @{
 }
@@ -7,7 +8,17 @@
     <form method="post">
         <button type="submit" class="btn btn-danger">Ja, slet reservation</button>
         <p>@Model.Message</p>
-        <a href="mailto:123@edu.zealand.dk">Send e-mail for at give besked til @Model.SingleBooking.User.Name af hans aflyste reservation</a>
+        <a href="mailto:123@edu.zealand.dk">
+            Send e-mail for at give besked til @{
+                                                   try
+                                                   {
+                                                       @Model.SingleBooking.User.Name
+                                                   }
+                                                   catch
+                                                   { <p>eleven</p>
+                                                   }
+                                               }  om hans aflyste reservation
+        </a>
         <a class="btn btn-primary" asp-page="/Booking/GetBookings">Nej, slet ikke</a>
     </form>
 </div>

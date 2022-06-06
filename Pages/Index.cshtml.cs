@@ -26,6 +26,8 @@ namespace Zealandic_Booking.Pages
         public List<User> Users { get; private set; }
         public List<Models.Room> Rooms { get; private set; }
         public bool LoginCheck { get; set; }
+
+        public string Message { get; set; }
         public IndexModel(ILogger<IndexModel> logger, BookingService bookingService, RoomService roomService, UserService userService)
         {
             _logger = logger;
@@ -51,13 +53,7 @@ namespace Zealandic_Booking.Pages
                 MyBookings = Bookings.Where(a => a.UserID == Int32.Parse(currentUserID)).ToList();
                 Users = userService.GetUsers().ToList();
                 Rooms = roomService.GetRooms().ToList();
-                foreach (var item in Bookings)
-                {
-                    if (item.Time < currentDT)
-                    {
-                        bookingService.DeleteBooking(item.BookingID);
-                    }   
-                }
+                bookingService.DeleteOldBooking();
             }
             catch (Exception e)
             {
@@ -84,6 +80,7 @@ namespace Zealandic_Booking.Pages
 
             string currentUserID = HttpContext.User.Identities.First().Claims.ElementAt(1).Value;
 
+            
             Bookings = bookingService.GetBookings().ToList();
             Users = userService.GetUsers().ToList();
             Rooms = roomService.GetRooms().ToList();
@@ -103,6 +100,7 @@ namespace Zealandic_Booking.Pages
                 }
             }
             await bookingService.AddBooking(booking);
+            bookingService.DeleteOldBooking();
             return RedirectToPage("/Index");
         }
     }

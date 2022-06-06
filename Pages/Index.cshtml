@@ -1,4 +1,6 @@
-﻿@page
+﻿@page "{message?}"
+@using System.Security.Principal
+@using System.Runtime.InteropServices
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -96,7 +98,6 @@
 
                 $("#Tdate").text(Day + "/" + Month + "/" + Year);
                 $("#Troom").text($("#PRID option:selected").text());
-                The 
                 if (data && data.indexOf("x0x") !== -1) {
                     if ($("#00").hasClass("btn-dark")) {
                         $("#inlineRadio1").prop("disabled", true);
@@ -286,6 +287,7 @@
         <div class="row">
             <div style="width: 408px; margin-right: auto;" id="firstCol" class="mb-5">
                 <h3>Book et rum</h3>
+                <p class="text-danger">@ViewContext.HttpContext.Request.Query["Handler"].ToString()</p>
                 <div class="">
                     <b class="font-weight-bold text-center">Vælg rum</b>
                     <select class="form-control btn-dark" name="postRoomID" id="PRID" aria-label="Room Select Form">
@@ -391,6 +393,7 @@
                 </div>
                 <div class="text-center">
                     <input class="btn btn-dark text-center" id="submit" type="submit">
+                   
                 </div>
                 <div class="container shadow-sm mt-3">
                     <table class="table table-striped shadow">
