@@ -17,7 +17,7 @@ namespace Zealandic_Booking.Pages.Booking
         private BookingService _bookingService;
         private List<Models.Booking> bookings;
 
-        [BindProperty] public string Message {get; set;}
+        [BindProperty]public string Message {get; set;}
 
 
         public DeleteBookingModel(BookingService bookingService)
@@ -28,9 +28,22 @@ namespace Zealandic_Booking.Pages.Booking
         [BindProperty] public Models.Booking SingleBooking { get; set; }
         public IActionResult OnGet(int id)
         {
-            SingleBooking = _bookingService.GetBooking(id);
-            Message = "Du sletter bookingen i " + SingleBooking.Room.Title +" ved " + SingleBooking.Time +" af "+ SingleBooking.User.Name;
-            return Page();
+            try
+            {
+                SingleBooking = _bookingService.GetBooking(id);
+                Message = "Du sletter bookingen i " + SingleBooking.Room.Title +" ved " + SingleBooking.Time +" af "+ SingleBooking.User.Name;
+                return Page();
+
+            }
+            catch
+            {
+                Message = "Vi løb ind i en fejl, så du blev sendt til forsiden";
+
+                //return Redirect("/Index");
+                return RedirectToPage("/Index",Message);
+                
+            }
+            
 
         }
         public async Task<IActionResult> OnPost(int id)
