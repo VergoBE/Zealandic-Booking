@@ -6,7 +6,7 @@ using Zealandic_Booking.Models;
 
 namespace Zealandic_Booking.Services
 {
-    public class RoomService
+    public class RoomService : IRoomService
     {
         private List<Room> rooms;
         public DBService<Room> DbService { get; set; }
@@ -66,7 +66,7 @@ namespace Zealandic_Booking.Services
             
         }
 
-        private async void _DeleteRoom(Room roomToBeDeleted)
+        public async void _DeleteRoom(Room roomToBeDeleted)
         {
             await DbService.DeleteObjectAsync(roomToBeDeleted);
         }

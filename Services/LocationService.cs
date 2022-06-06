@@ -6,7 +6,7 @@ using Zealandic_Booking.Models;
 
 namespace Zealandic_Booking.Services
 {
-    public class LocationService
+    public class LocationService : ILocationService
     {
         private List<Location> locations;
         public DBService<Location> DbService { get; set; }
@@ -57,7 +57,7 @@ namespace Zealandic_Booking.Services
             return locationToBeDeleted;
         }
 
-        private async void _DeleteLocation(Location locationToBeDeleted)
+        public async void _DeleteLocation(Location locationToBeDeleted)
         {
             await DbService.DeleteObjectAsync(locationToBeDeleted);
         }
