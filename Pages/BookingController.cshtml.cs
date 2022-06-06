@@ -28,11 +28,25 @@ namespace Zealandic_Booking.Pages.WorkInProgress
             {
                 userID = Int32.Parse(HttpContext.User.Identities.First().Claims.ElementAt(1).Value);
 
+                DateTime currentDT = DateTime.Now;
+                string buffer = Year.ToString() + "/" + Month.ToString() + "/" + Day.ToString();
+                CultureInfo cultureInfoCreate = CultureInfo.CreateSpecificCulture("en-DK");
+                DateTime date = DateTime.Parse(buffer, cultureInfoCreate);
+                if (currentDT.Date == date)
+                {
+                    bufferSTR = bufferSTR + "kk" + currentDT.Hour.ToString() + "kk";
+                }
+                else if (currentDT.Date > date)
+                {
+                    bufferSTR = bufferSTR + "yyy";
+                }
+
             }
             catch (Exception e)
             {
                 return new JsonResult("");
             }
+            
             Bookings = bookingService.GetBookings().ToList();
             foreach (Models.Booking item in Bookings)
             {

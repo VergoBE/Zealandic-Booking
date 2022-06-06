@@ -93,10 +93,25 @@
             url: 'BookingController',
             data: { "Year": Year, "Month": Month, "Day": Day, "roomID": roomID },
             success: function (data) {
-
+                console.log(data);
                 $("#Tdate").text(Day + "/" + Month + "/" + Year);
                 $("#Troom").text($("#PRID option:selected").text());
                 
+
+                $("#inlineRadio12").prop("disabled", false);
+                $("#inlineRadio11").prop("disabled", false);
+                $("#inlineRadio10").prop("disabled", false);
+                $("#inlineRadio9").prop("disabled", false);
+                $("#inlineRadio8").prop("disabled", false);
+                $("#inlineRadio7").prop("disabled", false);
+                $("#inlineRadio6").prop("disabled", false);
+                $("#inlineRadio5").prop("disabled", false);
+                $("#inlineRadio4").prop("disabled", false);
+                $("#inlineRadio3").prop("disabled", false);
+                $("#inlineRadio2").prop("disabled", false);
+                $("#inlineRadio1").prop("disabled", false);
+
+
                 if (data && data.indexOf("x0x") !== -1) {
                     if ($("#00").hasClass("btn-dark")) {
                         $("#inlineRadio1").prop("disabled", true);
@@ -243,6 +258,129 @@
                     }
                 }
 
+                if (data && data.indexOf("x22x") !== -1) {
+                    if ($("#22").hasClass("btn-dark")) {
+                        $("#inlineRadio12").prop("disabled", true);
+                        $("#22").removeClass("btn-dark").addClass("btn-danger");
+                    }
+                }
+
+                if (data && data.indexOf("yyy") !== -1) {
+                    $("#inlineRadio12").prop("disabled", true);
+                    $("#inlineRadio11").prop("disabled", true);
+                    $("#inlineRadio10").prop("disabled", true);
+                    $("#inlineRadio9").prop("disabled", true);
+                    $("#inlineRadio8").prop("disabled", true);
+                    $("#inlineRadio7").prop("disabled", true);
+                    $("#inlineRadio6").prop("disabled", true);
+                    $("#inlineRadio5").prop("disabled", true);
+                    $("#inlineRadio4").prop("disabled", true);
+                    $("#inlineRadio3").prop("disabled", true);
+                    $("#inlineRadio2").prop("disabled", true);
+                    $("#inlineRadio1").prop("disabled", true);
+                } else if (data && data.indexOf("kk") !== -1) {
+                    var middle = data.slice(
+                        data.indexOf('kk') + 2,
+                        data.lastIndexOf('kk')
+                    );
+                    var currentHour = parseInt(middle);
+                    console.log(currentHour);
+                    if (currentHour <= 0) {
+                        $("#inlineRadio1").prop("disabled", true);
+                    } else if (currentHour <= 2) {
+                        $("#inlineRadio1").prop("disabled", true);
+                        $("#inlineRadio2").prop("disabled", true);
+                    } else if (currentHour <= 4) {
+                        $("#inlineRadio1").prop("disabled", true);
+                        $("#inlineRadio2").prop("disabled", true);
+                        $("#inlineRadio3").prop("disabled", true);
+                    } else if (currentHour <= 6) {
+                        $("#inlineRadio1").prop("disabled", true);
+                        $("#inlineRadio2").prop("disabled", true);
+                        $("#inlineRadio3").prop("disabled", true);
+                        $("#inlineRadio4").prop("disabled", true);
+                    } else if (currentHour <= 8) {
+                        $("#inlineRadio1").prop("disabled", true);
+                        $("#inlineRadio2").prop("disabled", true);
+                        $("#inlineRadio3").prop("disabled", true);
+                        $("#inlineRadio4").prop("disabled", true);
+                        $("#inlineRadio5").prop("disabled", true);
+                    } else if (currentHour <= 10) {
+                        $("#inlineRadio1").prop("disabled", true);
+                        $("#inlineRadio2").prop("disabled", true);
+                        $("#inlineRadio3").prop("disabled", true);
+                        $("#inlineRadio4").prop("disabled", true);
+                        $("#inlineRadio5").prop("disabled", true);
+                        $("#inlineRadio6").prop("disabled", true);
+                    } else if (currentHour <= 12) {
+                        $("#inlineRadio1").prop("disabled", true);
+                        $("#inlineRadio2").prop("disabled", true);
+                        $("#inlineRadio3").prop("disabled", true);
+                        $("#inlineRadio4").prop("disabled", true);
+                        $("#inlineRadio5").prop("disabled", true);
+                        $("#inlineRadio6").prop("disabled", true);
+                        $("#inlineRadio7").prop("disabled", true);
+                    } else if (currentHour <= 14) {
+                        $("#inlineRadio1").prop("disabled", true);
+                        $("#inlineRadio2").prop("disabled", true);
+                        $("#inlineRadio3").prop("disabled", true);
+                        $("#inlineRadio4").prop("disabled", true);
+                        $("#inlineRadio5").prop("disabled", true);
+                        $("#inlineRadio6").prop("disabled", true);
+                        $("#inlineRadio7").prop("disabled", true);
+                        $("#inlineRadio8").prop("disabled", true);
+                    } else if (currentHour <= 16) {
+                        $("#inlineRadio1").prop("disabled", true);
+                        $("#inlineRadio2").prop("disabled", true);
+                        $("#inlineRadio3").prop("disabled", true);
+                        $("#inlineRadio4").prop("disabled", true);
+                        $("#inlineRadio5").prop("disabled", true);
+                        $("#inlineRadio6").prop("disabled", true);
+                        $("#inlineRadio7").prop("disabled", true);
+                        $("#inlineRadio8").prop("disabled", true);
+                        $("#inlineRadio9").prop("disabled", true);
+                    } else if (currentHour <= 18) {
+                        $("#inlineRadio1").prop("disabled", true);
+                        $("#inlineRadio2").prop("disabled", true);
+                        $("#inlineRadio3").prop("disabled", true);
+                        $("#inlineRadio4").prop("disabled", true);
+                        $("#inlineRadio5").prop("disabled", true);
+                        $("#inlineRadio6").prop("disabled", true);
+                        $("#inlineRadio7").prop("disabled", true);
+                        $("#inlineRadio8").prop("disabled", true);
+                        $("#inlineRadio9").prop("disabled", true);
+                        $("#inlineRadio10").prop("disabled", true);
+                    } else if (currentHour <= 20) {
+                        $("#inlineRadio1").prop("disabled", true);
+                        $("#inlineRadio2").prop("disabled", true);
+                        $("#inlineRadio3").prop("disabled", true);
+                        $("#inlineRadio4").prop("disabled", true);
+                        $("#inlineRadio5").prop("disabled", true);
+                        $("#inlineRadio6").prop("disabled", true);
+                        $("#inlineRadio7").prop("disabled", true);
+                        $("#inlineRadio8").prop("disabled", true);
+                        $("#inlineRadio9").prop("disabled", true);
+                        $("#inlineRadio10").prop("disabled", true);
+                        $("#inlineRadio11").prop("disabled", true);
+                    } else if (currentHour <= 22) {
+                        $("#inlineRadio1").prop("disabled", true);
+                        $("#inlineRadio2").prop("disabled", true);
+                        $("#inlineRadio3").prop("disabled", true);
+                        $("#inlineRadio4").prop("disabled", true);
+                        $("#inlineRadio5").prop("disabled", true);
+                        $("#inlineRadio6").prop("disabled", true);
+                        $("#inlineRadio7").prop("disabled", true);
+                        $("#inlineRadio8").prop("disabled", true);
+                        $("#inlineRadio9").prop("disabled", true);
+                        $("#inlineRadio10").prop("disabled", true);
+                        $("#inlineRadio11").prop("disabled", true);
+                        $("#inlineRadio12").prop("disabled", true);
+                        console.log("asdasd");
+                    }
+
+
+                }
+
             },
             error: function (xhr) {
                 console.log("Something went wrong. Please consult Zealandic Booking at 20581337");
@@ -357,7 +495,6 @@
     }
 
 </script>
-
 @if (Model.LoginCheck == true)
 {
     <form method="post">
