@@ -96,7 +96,7 @@
 
                 $("#Tdate").text(Day + "/" + Month + "/" + Year);
                 $("#Troom").text($("#PRID option:selected").text());
-                The 
+                
                 if (data && data.indexOf("x0x") !== -1) {
                     if ($("#00").hasClass("btn-dark")) {
                         $("#inlineRadio1").prop("disabled", true);
@@ -271,10 +271,88 @@
             $("#DT_Month").val(12);
             DT_Function();
         }
-        else if (Day > 31) {
-            $("#DT_Day").val(31);
-            DT_Function();
+
+        if (Month == 12) {
+            if (Day > 31) {
+                $("#DT_Day").val(31);
+                DT_Function();
+            }
         }
+        else if (Month == 11) {
+            if (Day > 30) {
+                $("#DT_Day").val(30);
+                DT_Function();
+            }
+        }
+        else if (Month == 10) {
+            if (Day > 31) {
+                $("#DT_Day").val(31);
+                DT_Function();
+            }
+        }
+        else if (Month == 9) {
+            if (Day > 30) {
+                $("#DT_Day").val(30);
+                DT_Function();
+            }
+        }
+        else if (Month == 8) {
+            if (Day > 30) {
+                $("#DT_Day").val(31);
+                DT_Function();
+            }
+        }
+        else if (Month == 7) {
+            if (Day > 31) {
+                $("#DT_Day").val(31);
+                DT_Function();
+            }
+        }
+        else if (Month == 6) {
+            if (Day > 30) {
+                $("#DT_Day").val(30);
+                DT_Function();
+            }
+        }
+        else if (Month == 5) {
+            if (Day > 31) {
+                $("#DT_Day").val(31);
+                DT_Function();
+            }
+        }
+        else if (Month == 4) {
+            if (Day > 30) {
+                $("#DT_Day").val(30);
+                DT_Function();
+            }
+        }
+        else if (Month == 3) {
+            if (Day > 31) {
+                $("#DT_Day").val(31);
+                DT_Function();
+            }
+        }
+        else if (Year % 4 == 0 && Month == 2) {
+            if (Day > 29) {
+                $("#DT_Day").val(29); //Skudår
+                DT_Function();
+            }
+        }
+        else if (Month == 2) {
+            if (Day > 28) {
+                $("#DT_Day").val(28);
+                DT_Function();
+            }
+        }
+        else if (Month == 1) {
+            if (Day > 31) {
+                $("#DT_Day").val(31);
+                DT_Function();
+            }
+        }
+        
+        
+        
         GetBookings(Year, Month, Day, PostRoomID);
     }
 
