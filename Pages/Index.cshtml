@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{message?}"
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -501,6 +501,7 @@
         <div class="row">
             <div style="width: 408px; margin-right: auto;" id="firstCol" class="mb-5">
                 <h3>Book et rum</h3>
+                <p>@ViewContext.HttpContext.Request.Query["Handler"].ToString()</p>
                 <div class="">
                     <b class="font-weight-bold text-center">Vælg rum</b>
                     <select class="form-control btn-dark" name="postRoomID" id="PRID" aria-label="Room Select Form">
