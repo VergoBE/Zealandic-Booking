@@ -98,6 +98,10 @@ namespace Zealandic_Booking.Pages
                 {
                     return RedirectToPage("/Index");
                 }
+                if (item.UserID == booking.UserID && item.Time == booking.Time)
+                {
+                    return RedirectToPage("/Index");
+                }
             }
             await bookingService.AddBooking(booking);
             bookingService.DeleteOldBooking();
