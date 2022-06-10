@@ -16,6 +16,7 @@ namespace Zealandic_Booking.Services
     {
         private List<T> objectList;
         private IEnumerable<T> objectEnumlist;
+        private T objToReturn;
 
         public DBService<T> DbService { get; set; }
 
@@ -29,6 +30,11 @@ namespace Zealandic_Booking.Services
         {
             objectList = GetObjectsAsync().Result.ToList();
             return objectList;
+        }
+        public T GetObjectByID(int id)
+        {
+            objToReturn = GetObjectByIdAsync(id).Result;
+            return objToReturn;
         }
         public async Task<IEnumerable<T>> GetObjectsAsync()
         {
@@ -57,32 +63,44 @@ namespace Zealandic_Booking.Services
 
         public async Task<T> GetObjectByIdAsync(int id)
         {
-            T objToRet= (T)Activator.CreateInstance(typeof(T));
+            objToReturn = (T)Activator.CreateInstance(typeof(T));
             
             foreach (var Singleobject in objectList)
             {
-                string object1value;
                 Type t = Singleobject.GetType();
-                PropertyInfo prop = t.GetProperty(t+"ID");
+                string objType = t.Name;
+                var prop = Singleobject.GetType().GetProperty(objType+"ID");
+                
+                var obj= prop.GetValue(Singleobject, null);
 
-                foreach (PropertyInfo property in t.GetProperties())
+                if (obj.ToString() == id.ToString())
                 {
-                    if(t.GetProperty(property.Name) != null)
-                    {
-                        object1value = t.GetProperty(property.Name).GetValue(Singleobject, null).ToString();
-                    }
+                    return Singleobject;
                 }
 
-                var hej = prop.GetValue(Singleobject);
-                t.Attributes.ToString();
+                //foreach (PropertyInfo property in t.GetProperties())
+                //{
+                //    if(t.GetProperty(property.Name) != null)
+                //    {
+                //        object1value = t.GetProperty(property.Name).GetValue(Singleobject, null).ToString();
+
+                //        if (object1value == id.ToString())
+                //        {
+                //            return Singleobject;
+                //        }
+                //    }
+                //}
+                //t.Assembly.GetObjectData(Singleobject,null);
+                //var hej = prop.GetValue(Singleobject);
+                //t.Attributes.ToString();
                 //if (t.GetCustomAttributes() == id)
                 //{
                 //    objToRet = Singleobject;
                 //}
-            }
+            }   
 
 
-            return objToRet;
+            return objToReturn;
         }
 
         

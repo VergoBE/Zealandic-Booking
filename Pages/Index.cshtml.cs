@@ -16,8 +16,11 @@ namespace Zealandic_Booking.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private BookingService bookingService;
-        private RoomService roomService;
-        private UserService userService;
+        //private RoomService roomService;
+        //private UserService userService;
+        private ObjectService<User> userService;
+        private ObjectService<Models.Room> roomService;
+        //private ObjectService<User> userService;
         public int currentYear { get; set; }
         public int currentMonth { get; set; }
         public int currentDay { get; set; }
@@ -26,7 +29,7 @@ namespace Zealandic_Booking.Pages
         public List<User> Users { get; private set; }
         public List<Models.Room> Rooms { get; private set; }
         public bool LoginCheck { get; set; }
-        public IndexModel(ILogger<IndexModel> logger, BookingService bookingService, RoomService roomService, UserService userService)
+        public IndexModel(ILogger<IndexModel> logger, BookingService bookingService, ObjectService<Models.Room> roomService,ObjectService<User> userService)
         {
             _logger = logger;
             this.bookingService = bookingService;
@@ -49,8 +52,8 @@ namespace Zealandic_Booking.Pages
                 currentDay = currentDT.Day;
                 Bookings = bookingService.GetBookings().ToList();
                 MyBookings = Bookings.Where(a => a.UserID == Int32.Parse(currentUserID)).ToList();
-                Users = userService.GetUsers().ToList();
-                Rooms = roomService.GetRooms().ToList();
+                Users = userService.GetObjectlistAsync();
+                Rooms = roomService.GetObjectlistAsync();
                 foreach (var item in Bookings)
                 {
                     if (item.Time < currentDT)
@@ -85,10 +88,10 @@ namespace Zealandic_Booking.Pages
             string currentUserID = HttpContext.User.Identities.First().Claims.ElementAt(1).Value;
 
             Bookings = bookingService.GetBookings().ToList();
-            Users = userService.GetUsers().ToList();
-            Rooms = roomService.GetRooms().ToList();
-            room = roomService.GetRoom(postRoomID);
-            user = userService.GetUser(postUserID);
+            Users = userService.GetObjectlistAsync();
+            Rooms = roomService.GetObjectlistAsync();
+            room = roomService.GetObjectByID(postRoomID);
+            user = userService.GetObjectByID(postUserID);
 
             CultureInfo cultureInfoCreate = CultureInfo.CreateSpecificCulture("en-DK");
             buffer = year.ToString() + "/" + month.ToString() + "/" + day.ToString() + " " + time;

@@ -14,10 +14,10 @@ namespace Zealandic_Booking.Pages.Room
         private RoomService roomService;
         private ObjectService<Models.Room> objectService { get; set; }
 
-        public GetRoomsModel(RoomService roomService, ObjectService<Models.Room> objectService)
+        public GetRoomsModel( ObjectService<Models.Room> objectService)
         {
 
-            this.roomService = roomService;
+            //this.roomService = roomService;
             this.objectService = objectService;
         }
 
