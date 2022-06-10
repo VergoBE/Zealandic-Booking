@@ -489,7 +489,11 @@
             }
         }
         
-        
+        if (Day == 0 || Year == 0 || Month == 0) {
+            $("#submit").prop("disabled", true);
+        } else {
+            $("#submit").prop("disabled", false);
+        }
         
         GetBookings(Year, Month, Day, PostRoomID);
     }
