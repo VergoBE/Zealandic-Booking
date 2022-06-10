@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -26,7 +27,7 @@ namespace Zealandic_Booking.Services
             objectList = dbService.GetObjectsAsync().Result.ToList(); 
         }
 
-        public List<T> GetObjectlistAsync()
+        public List<T> GetObjectlist()
         {
             objectList = GetObjectsAsync().Result.ToList();
             return objectList;

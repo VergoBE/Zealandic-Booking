@@ -28,7 +28,7 @@ namespace Zealandic_Booking.Pages.Room
         {
             //Rooms = roomService.GetRooms().ToList();
             //Rooms = objectService.GetObjectsAsync().Result.ToList(); 
-            Rooms = objectService.GetObjectlistAsync();
+            Rooms = objectService.GetObjectlist();
             return Page();
         }
         public IActionResult OnPostRoomSearch()
