@@ -40,6 +40,10 @@ namespace Zealandic_Booking
             services.AddTransient<DBService<Building>>();
             services.AddTransient<DBService<Location>>();
             services.AddTransient<DBService<Room>>();
+            services.AddTransient<ObjectService<User>>();
+            services.AddTransient<ObjectService<Room>>();
+            services.AddTransient<ObjectService<Location>>();
+            services.AddTransient<ObjectService<Building>>();
 
 
 
