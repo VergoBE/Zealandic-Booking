@@ -30,20 +30,24 @@ namespace Zealandic_Booking
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddTransient<UserService, UserService>();
+            services.AddTransient(typeof(DBService<>));
+            services.AddTransient(typeof(ObjectService<>));
             services.AddTransient<BookingService, BookingService>();
-            services.AddTransient<BuildingService, BuildingService>();
-            services.AddTransient<LocationService, LocationService>();
-            services.AddTransient<RoomService, RoomService>();
-            services.AddTransient<DBService<User>>();
-            services.AddTransient<DBService<Booking>>();
-            services.AddTransient<DBService<Building>>();
-            services.AddTransient<DBService<Location>>();
-            services.AddTransient<DBService<Room>>();
-            services.AddTransient<ObjectService<User>>();
-            services.AddTransient<ObjectService<Room>>();
-            services.AddTransient<ObjectService<Location>>();
-            services.AddTransient<ObjectService<Building>>();
+            services.AddTransient<UserService, UserService>();
+            //services.AddTransient<BuildingService, BuildingService>();
+            //services.AddTransient<LocationService, LocationService>();
+            //services.AddTransient<RoomService, RoomService>();
+            //services.AddTransient<DBService<User>>();
+            //services.AddTransient<DBService<Booking>>();
+            //services.AddTransient<DBService<Building>>();
+            //services.AddTransient<DBService<Location>>();
+            //services.AddTransient<DBService<Room>>();
+            //services.AddTransient<ObjectService<User>>();
+            //services.AddTransient<ObjectService<Room>>();
+            //services.AddTransient<ObjectService<Location>>();
+            //services.AddTransient<ObjectService<Building>>();
+            
+            
 
 
 

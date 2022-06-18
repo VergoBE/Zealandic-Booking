@@ -26,7 +26,7 @@ namespace Zealandic_Booking.Services
             return users;
         }
 
-        public User GetUser(int? id)
+        public User GetUser(int id)
         {
             //foreach (User user in users)
             //{
@@ -39,7 +39,7 @@ namespace Zealandic_Booking.Services
         public User DeleteUser(int userId)
         {
             //User userToBeDeleted = null;
-            User userToBeDeleted = GetUser(userId); 
+
             //foreach (User i in users)
             //{
             //    if (i.UserID == userId)
@@ -48,6 +48,7 @@ namespace Zealandic_Booking.Services
             //        break;
             //    }
             //}
+            User userToBeDeleted = GetUser(userId);
             if (userToBeDeleted != null)
             {
                 users.Remove(userToBeDeleted);

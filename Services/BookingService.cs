@@ -11,11 +11,13 @@ namespace Zealandic_Booking.Services
     public class BookingService : IBookingService
     {
         private List<Booking> bookings;
-        private UserService userService;
-        private RoomService roomService;
+        //private UserService userService;
+        //private RoomService roomService;
+        private ObjectService<User> userService;
+        private ObjectService<Room> roomService;
         public DBService<Booking> DbService { get; set; }
 
-        public BookingService(DBService<Booking> dbService,UserService uService,RoomService rService)
+        public BookingService(DBService<Booking> dbService, ObjectService<User> uService, ObjectService<Room> rService)
         {
             DbService = dbService;
             bookings = dbService.GetObjectsAsync().Result.ToList();
@@ -24,11 +26,11 @@ namespace Zealandic_Booking.Services
             //users = userService.GetUsers();
             foreach (var singleBooking in bookings)
             {
-                User singleuser = userService.GetUser(singleBooking.UserID);
+                User singleuser = userService.GetObjectByID(singleBooking.UserID);
                 singleBooking.User = singleuser;
                 int bIndex = bookings.FindIndex(a => a.UserID == singleBooking.UserID);
                 bookings[bIndex].User = singleuser;
-                Room singleRoom = roomService.GetRoom(singleBooking.RoomID);
+                Room singleRoom = roomService.GetObjectByID(singleBooking.RoomID);
                 singleBooking.Room = singleRoom;
                 bIndex = bookings.FindIndex(a => a.RoomID == singleBooking.RoomID);
                 bookings[bIndex].Room = singleRoom;

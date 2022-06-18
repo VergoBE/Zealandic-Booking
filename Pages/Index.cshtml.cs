@@ -51,11 +51,12 @@ namespace Zealandic_Booking.Pages
                 currentYear = currentDT.Year;
                 currentMonth = currentDT.Month;
                 currentDay = currentDT.Day;
+                bookingService.DeleteOldBooking();
                 Bookings = bookingService.GetBookings().ToList();
                 MyBookings = Bookings.Where(a => a.UserID == Int32.Parse(currentUserID)).ToList();
                 Users = userService.GetObjectlist();
                 Rooms = roomService.GetObjectlist();
-                bookingService.DeleteOldBooking();
+                
             }
             catch (Exception e)
             {
@@ -92,6 +93,7 @@ namespace Zealandic_Booking.Pages
             CultureInfo cultureInfoCreate = CultureInfo.CreateSpecificCulture("en-DK");
             buffer = year.ToString() + "/" + month.ToString() + "/" + day.ToString() + " " + time;
             datetime = DateTime.Parse(buffer,cultureInfoCreate);
+            //datetime = DateTime.Parse(buffer);
             booking = new Models.Booking(null, datetime, postRoomID, Int32.Parse(currentUserID));
             var id = Bookings.Select(b => b.UserID);
             foreach (Models.Booking item in Bookings)

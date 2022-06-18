@@ -16,9 +16,9 @@ namespace Zealandic_Booking.Pages.LogIn
 {
     public class LogInModel : PageModel
     {
-        private UserService _userService;
+        private ObjectService<User> _userService;
 
-        public LogInModel(UserService userService)
+        public LogInModel(ObjectService<User> userService)
         {
             _userService = userService;
         }
@@ -33,7 +33,7 @@ namespace Zealandic_Booking.Pages.LogIn
 
         public async Task<IActionResult> OnPostAsync()
         {
-            IEnumerable<User> users = _userService.GetUsers();
+            IEnumerable<User> users = _userService.GetObjectlist();
             foreach (User user in users)
             {
                 if (UserName == user.Username)

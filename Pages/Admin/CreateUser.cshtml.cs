@@ -16,7 +16,8 @@ namespace Zealandic_Booking.Pages.Admin
     public class CreateUserModel : PageModel
     {
         
-        private UserService _userService;
+        //private UserService _userService;
+        private ObjectService<User> userService;
         private PasswordHasher<string> passwordHasher;
         public List<User> Users { get; set; }
 
@@ -38,14 +39,14 @@ namespace Zealandic_Booking.Pages.Admin
         //[StringLength(50, MinimumLength = 2, ErrorMessage = "The user's role cannot be longer than 50 characters.")]
         //public string Role { get; set; }
 
-        public CreateUserModel(UserService userService)
+        public CreateUserModel(ObjectService<User> UserService)
         {
-            _userService = userService;
+            userService = UserService;
             passwordHasher = new PasswordHasher<string>();
         }
         public IActionResult OnGet()
         {
-            Users = _userService.GetUsers().ToList();
+            Users = userService.GetObjectlist();
 
             return Page();
         }
@@ -55,7 +56,7 @@ namespace Zealandic_Booking.Pages.Admin
             {
                 return Page();
             }
-            _userService.AddUser(new User(null, gName, gRole, gUserName, passwordHasher.HashPassword(null, gPassword)));
+            await userService.AddObjectAsync(new User(null, gName, gRole, gUserName, passwordHasher.HashPassword(null, gPassword)));
             return RedirectToPage("/Index");
         }
     }
