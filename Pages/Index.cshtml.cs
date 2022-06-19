@@ -44,6 +44,7 @@ namespace Zealandic_Booking.Pages
             LoginCheck = true;
             try
             {
+                bookingService.DeleteOldBooking();
                 string currentUserID = HttpContext.User.Identities.First().Claims.ElementAt(1).Value;
                 DateTime currentDT = DateTime.Now;
                 currentYear = currentDT.Year;
@@ -53,7 +54,6 @@ namespace Zealandic_Booking.Pages
                 MyBookings = Bookings.Where(a => a.UserID == Int32.Parse(currentUserID)).ToList();
                 Users = userService.GetUsers().ToList();
                 Rooms = roomService.GetRooms().ToList();
-                bookingService.DeleteOldBooking();
             }
             catch (Exception e)
             {
