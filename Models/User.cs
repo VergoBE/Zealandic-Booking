@@ -12,16 +12,17 @@ namespace Zealandic_Booking.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int? UserID { get; set; }
-        [Required]
+        [Display(Name = "Name")]
+        [Required(ErrorMessage = "Name is required.")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "The user's name cannot be longer than 50 characters.")]
         public string Name { get; set; }
         [Required]
         [StringLength(50, ErrorMessage = "Role cannot be longer than 50 characters.")]
         public string Role { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Username is required.")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "Username cannot be longer than 100 characters.")]
         public string Username { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Password is required.")]
         public string Password { get; set; }
 
         public virtual ICollection<Booking> Bookings { get; set; }

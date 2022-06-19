@@ -19,6 +19,7 @@ namespace Zealandic_Booking.Pages.Admin
         private UserService _userService;
         private PasswordHasher<string> passwordHasher;
         public List<User> Users { get; set; }
+        public User User { get; set; }
 
         //[Required(ErrorMessage = "UserName is required")]
         //[StringLength(100, MinimumLength = 2, ErrorMessage = "The user's UserName cannot be longer than 100 characters.")]
@@ -52,6 +53,11 @@ namespace Zealandic_Booking.Pages.Admin
         public async Task<IActionResult> OnPostAsync(String gName, String gRole, String gUserName, String gPassword)
         {
             if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            if (gName == null || gRole == null || gUserName == null || gPassword == null)
             {
                 return Page();
             }
