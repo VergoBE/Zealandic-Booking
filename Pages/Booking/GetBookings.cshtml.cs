@@ -15,12 +15,14 @@ namespace Zealandic_Booking.Pages.Booking
     public class GetBookingsModel : PageModel
     {
         private BookingService bookingService;
-        private UserService userService;
-        private RoomService roomService;
+        //private UserService userService;
+        //private RoomService roomService;
+        private ObjectService<Models.Room> roomService;
+        private ObjectService<User> userService;
         private IEnumerable<User> users;
         private IEnumerable<Models.Room> rooms;
 
-        public GetBookingsModel(BookingService bookingService, UserService userService, RoomService roomService)
+        public GetBookingsModel(BookingService bookingService, ObjectService<User> userService, ObjectService<Models.Room> roomService)
         {
             this.bookingService = bookingService;
             this.userService = userService;
